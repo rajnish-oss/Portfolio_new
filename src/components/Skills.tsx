@@ -55,13 +55,10 @@ const Skills = () => {
               glareOpacity={0.15}
               glareSize={250}
               className="h-full"
-              borderRadius="0"
+              borderRadius="16px"
             >
               <div 
-                className="bg-card/90 backdrop-blur-sm border border-border h-full p-8 transition-all duration-300 hover:border-primary/50 group"
-                style={{
-                  clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))",
-                }}
+                className="bg-card/90 backdrop-blur-sm border border-border h-full p-8 rounded-2xl transition-all duration-300 hover:border-primary/50 group"
               >
                 {/* Icon */}
                 <div className="text-4xl mb-4">{category.icon}</div>
