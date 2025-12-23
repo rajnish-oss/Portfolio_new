@@ -7,6 +7,9 @@ interface ScrollStackProps {
   itemStackDistance?: number;
   stackPosition?: string;
   baseScale?: number;
+  rotationAmount?: number;
+  blurAmount?: number;
+  fadeOut?: boolean;
 }
 
 const ScrollStack = ({
@@ -15,13 +18,19 @@ const ScrollStack = ({
   itemStackDistance = 30,
   stackPosition = "20%",
   baseScale = 0.85,
+  rotationAmount = 5,
+  blurAmount = 0,
+  fadeOut = true,
 }: ScrollStackProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
   const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
 
   useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+    });
     setLenisInstance(lenis);
 
     function raf(time: number) {
@@ -72,8 +81,9 @@ const ScrollStack = ({
           
           const scale = baseScale + (1 - baseScale) * (1 - normalizedProgress);
           const translateY = -normalizedProgress * itemStackDistance * (totalItems - index);
-          const rotateX = normalizedProgress * 5;
-          const opacity = 1 - normalizedProgress * 0.3;
+          const rotateX = normalizedProgress * rotationAmount;
+          const blur = normalizedProgress * blurAmount;
+          const opacity = fadeOut ? 1 - normalizedProgress * 0.4 : 1;
 
           return (
             <div
@@ -82,8 +92,9 @@ const ScrollStack = ({
               style={{
                 transform: `translateY(${translateY}px) scale(${scale}) perspective(1000px) rotateX(${rotateX}deg)`,
                 opacity,
+                filter: blurAmount > 0 ? `blur(${blur}px)` : undefined,
                 zIndex: totalItems - index,
-                transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
+                transition: "transform 0.1s ease-out, opacity 0.1s ease-out, filter 0.1s ease-out",
               }}
             >
               {isValidElement(child) ? cloneElement(child) : child}
