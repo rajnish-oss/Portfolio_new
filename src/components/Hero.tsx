@@ -13,10 +13,9 @@ const Hero = () => {
       {/* PixelBlast Background */}
       <div className="absolute inset-0">
         <PixelBlast 
-          particleCount={200} 
-          particleSize={4} 
-          speed={0.3}
-          color="190, 255, 0"
+          color="#beff00"
+          gap={6}
+          speed={35}
         />
       </div>
 
