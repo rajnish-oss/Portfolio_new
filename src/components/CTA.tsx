@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const CTA = () => {
   return (
@@ -12,19 +13,43 @@ const CTA = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="bg-primary rounded-3xl p-12 md:p-20 text-center">
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-primary-foreground mb-6">
-            READY TO START
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="bg-primary rounded-3xl p-12 md:p-20 text-center"
+        >
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-primary-foreground mb-6"
+          >
+            LET'S BUILD
             <br />
-            YOUR PROJECT?
-          </h2>
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-10 font-light">
-            Let's collaborate and create something amazing together. 
-            Get in touch with us today and let's bring your vision to life.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            SOMETHING GREAT
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-10 font-light"
+          >
+            Have a project in mind? I'd love to hear about it. 
+            Let's discuss how I can help bring your ideas to life.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
             <Button variant="dark" size="xl" className="gap-2">
-              Get a Quote
+              Get In Touch
               <ArrowRight className="w-5 h-5" />
             </Button>
             <Button 
@@ -32,10 +57,10 @@ const CTA = () => {
               size="xl" 
               className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
             >
-              Schedule a Call
+              View Resume
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
