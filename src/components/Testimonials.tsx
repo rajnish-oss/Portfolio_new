@@ -8,24 +8,21 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote:
-      "Alex delivered our project ahead of schedule with exceptional quality. His attention to detail and communication made the collaboration seamless. Highly recommend!",
+    quote: "Alex delivered our project ahead of schedule with exceptional quality. His attention to detail and communication made the collaboration seamless. Highly recommend!",
     name: "Sarah Mitchell",
     role: "CEO",
     company: "TechStart Inc.",
     image: "https://framerusercontent.com/images/wpDspSB5J6TyMpd7mXzSsKy0ds.png",
   },
   {
-    quote:
-      "Working with Alex was a game-changer for our product. His technical expertise and design sensibility helped us create something truly special.",
+    quote: "Working with Alex was a game-changer for our product. His technical expertise and design sensibility helped us create something truly special.",
     name: "James Anderson",
     role: "Product Manager",
     company: "GrowthLab",
     image: "https://framerusercontent.com/images/bqyH4SQ3ViY4NXPNOSPlg7xRIk.png",
   },
   {
-    quote:
-      "Alex transformed our outdated platform into a modern, user-friendly application. His problem-solving skills and dedication were impressive throughout.",
+    quote: "Alex transformed our outdated platform into a modern, user-friendly application. His problem-solving skills and dedication were impressive throughout.",
     name: "Emily Chen",
     role: "Founder",
     company: "Innovatech",
@@ -54,7 +51,7 @@ const Testimonials = () => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      },
+      }
     );
   }, []);
 
@@ -91,19 +88,27 @@ const Testimonials = () => {
               className="bg-card border border-border p-8 rounded-xl"
             >
               <Quote className="w-10 h-10 text-primary mb-6" />
-
-              {/* <div className="flex gap-1 mb-4">
+              
+              <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 text-primary fill-primary" />
                 ))}
               </div>
-               */}
-              <p className="text-muted-foreground font-light leading-relaxed mb-8">"{testimonial.quote}"</p>
-
-              <div className="flex items-center gap-4">
-                <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover" />
-                <div>
-                  <h4 className="font-display font-semibold text-foreground">{testimonial.name}</h4>
+              
+              <p className="text-muted-foreground font-light leading-relaxed mb-8">
+                "{testimonial.quote}"
+              </p>
+              
+              {/* <div className="flex items-center gap-4">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+                <div> */}
+                  <h4 className="font-display font-semibold text-foreground">
+                    {testimonial.name}
+                  </h4>
                   <p className="text-muted-foreground text-sm">
                     {testimonial.role}, {testimonial.company}
                   </p>
