@@ -11,7 +11,7 @@ import Experience from "@/components/Experience";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import GradualBlur from "@/components/reactbits/GradualBlur";
-import TargetCursor from "@/components/reactbits/TargetCursor";
+// TargetCursor import removed - using GlareHover instead
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const Index = () => {
