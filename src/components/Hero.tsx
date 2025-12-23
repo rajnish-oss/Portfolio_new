@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ScrollFloat from "@/components/reactbits/ScrollFloat";
+import VariableProximity from "@/components/reactbits/VariableProximity";
+import FluidGlass from "@/components/reactbits/FluidGlass";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,7 @@ const stats = [
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const heroContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!statsRef.current) return;
@@ -51,7 +53,14 @@ const Hero = () => {
         <div className="absolute top-2/3 left-0 right-0 h-px bg-border/50" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      {/* FluidGlass decorative element */}
+      <div className="absolute top-1/4 right-10 w-64 h-64 opacity-50 hidden lg:block">
+        <FluidGlass className="w-full h-full" intensity={15} blur={30}>
+          <div className="w-full h-full rounded-3xl bg-gradient-to-br from-primary/10 to-accent/10" />
+        </FluidGlass>
+      </div>
+
+      <div ref={heroContainerRef} className="container mx-auto px-6 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}
           <motion.div
@@ -64,31 +73,29 @@ const Hero = () => {
             <span className="text-muted-foreground text-sm">Full-Stack Developer & Designer</span>
           </motion.div>
 
-          {/* Main Heading */}
-          <motion.h1
+          {/* Main Heading with VariableProximity */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-foreground mb-6 leading-tight"
+            className="mb-6"
           >
-            HI, I'M{" "}
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-primary"
-            >
-              ALEX
-            </motion.span>
-            <br />
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              I BUILD THINGS
-            </motion.span>
-          </motion.h1>
+            <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-foreground leading-tight">
+              HI, I'M{" "}
+              <span className="text-primary">ALEX</span>
+              <br />
+              <VariableProximity
+                label="I BUILD THINGS"
+                fromFontVariationSettings="'wght' 400"
+                toFontVariationSettings="'wght' 900"
+                containerRef={heroContainerRef as React.RefObject<HTMLElement>}
+                radius={150}
+                falloff="gaussian"
+                className="cursor-default"
+                style={{ fontFamily: "inherit" }}
+              />
+            </h1>
+          </motion.div>
 
           {/* Subheading */}
           <motion.p
