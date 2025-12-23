@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import VariableProximity from "@/components/reactbits/VariableProximity";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +34,8 @@ const aboutCards = [
 
 const About = () => {
   const cardsRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     if (!cardsRef.current) return;
@@ -73,9 +77,27 @@ const About = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-              WHO <span className="text-primary">I AM</span>
-            </h2>
+            <div 
+              ref={containerRef}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+              className="mb-6"
+            >
+              <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground">
+                WHO{" "}
+                <span className="text-primary">
+                  <VariableProximity
+                    label="I AM"
+                    containerRef={containerRef as React.RefObject<HTMLElement>}
+                    fromFontVariationSettings="'wght' 400"
+                    toFontVariationSettings="'wght' 900"
+                    radius={150}
+                    falloff="gaussian"
+                    className="font-display"
+                  />
+                </span>
+              </h2>
+            </div>
             <p className="text-muted-foreground text-lg mb-8 font-light leading-relaxed">
               I'm Alex, a full-stack developer based in San Francisco with a passion 
               for building exceptional digital experiences. With over 5 years of 
