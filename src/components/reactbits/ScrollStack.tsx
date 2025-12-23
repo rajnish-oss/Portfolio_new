@@ -77,7 +77,6 @@ const ScrollStack = ({
 
   const getSlideStyle = (index: number): CSSProperties => {
     const diff = scrollProgress - index;
-    const absDiff = Math.abs(diff);
 
     let translateY = 0;
     let scale = 1;
@@ -86,30 +85,30 @@ const ScrollStack = ({
     let zIndex = totalSlides - index;
 
     if (diff < 0) {
-      // Slide below current
-      translateY = (index - scrollProgress) * 100;
+      // Slide below current - appear faster
+      translateY = (index - scrollProgress) * 60;
       scale = 1;
-      opacity = 1;
+      opacity = Math.max(0, 1 - Math.abs(diff) * 0.5);
     } else if (diff >= 0 && diff < 1) {
       // Active slide transitioning
-      translateY = -diff * 20;
-      scale = 1 - diff * 0.05;
-      opacity = 1 - diff * 0.3;
-      rotateX = diff * 5;
+      translateY = -diff * 15;
+      scale = 1 - diff * 0.04;
+      opacity = 1 - diff * 0.2;
+      rotateX = diff * 3;
       zIndex = totalSlides + 1;
     } else {
       // Stacked slides
-      translateY = -20 - (diff - 1) * 10;
-      scale = 0.95 - (diff - 1) * 0.02;
-      opacity = 0.7 - (diff - 1) * 0.2;
-      rotateX = 5 + (diff - 1) * 2;
+      translateY = -15 - (diff - 1) * 8;
+      scale = 0.96 - (diff - 1) * 0.02;
+      opacity = 0.8 - (diff - 1) * 0.25;
+      rotateX = 3 + (diff - 1) * 1.5;
     }
 
     return {
       transform: `translateY(${translateY}%) scale(${scale}) perspective(1000px) rotateX(${rotateX}deg)`,
       opacity: Math.max(0, opacity),
       zIndex,
-      transition: `transform 0.1s ease-out, opacity 0.1s ease-out`,
+      transition: `transform 0.05s linear, opacity 0.05s linear`,
       ...styles.slide,
     };
   };
