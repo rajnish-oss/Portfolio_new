@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import FlowingMenu from "@/components/reactbits/FlowingMenu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,6 +14,11 @@ const Header = () => {
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
   ];
+
+  const flowingMenuItems = navLinks.map(link => ({
+    link: link.href,
+    text: link.label,
+  }));
 
   return (
     <motion.header
@@ -72,7 +78,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu with FlowingMenu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -82,25 +88,16 @@ const Header = () => {
             transition={{ duration: 0.3 }}
             className="md:hidden bg-background border-t border-border overflow-hidden"
           >
-            <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * index }}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-lg font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-              <Button variant="hero" size="lg" className="mt-4 gap-2">
+            <div className="container mx-auto px-6 py-8">
+              <FlowingMenu 
+                items={flowingMenuItems}
+                className="[&_a]:text-2xl [&_a]:py-3"
+              />
+              <Button variant="hero" size="lg" className="mt-6 w-full gap-2" onClick={() => setIsMenuOpen(false)}>
                 Hire Me
                 <ArrowRight className="w-4 h-4" />
               </Button>
-            </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

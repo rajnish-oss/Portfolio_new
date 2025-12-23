@@ -10,6 +10,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import GradualBlur from "@/components/reactbits/GradualBlur";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const Index = () => {
@@ -36,6 +37,14 @@ const Index = () => {
           content="I'm Alex, a full-stack developer crafting beautiful, performant web experiences. From concept to deployment, I bring ideas to life with clean code." 
         />
       </Helmet>
+
+      {/* Full-screen edge blur effect */}
+      <GradualBlur 
+        fullScreen 
+        direction="both" 
+        strength={1.5} 
+        divCount={4} 
+      />
 
       <div className="min-h-screen bg-background">
         <Header />
