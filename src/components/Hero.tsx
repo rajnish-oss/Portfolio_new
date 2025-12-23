@@ -3,19 +3,27 @@ import { ArrowRight, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import VariableProximity from "@/components/reactbits/VariableProximity";
-import PixelBlast from "@/components/reactbits/PixelBlast";
+import Galaxy from "@/components/reactbits/Galaxy";
 
 const Hero = () => {
   const heroContainerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="min-h-screen pt-20 flex items-center relative overflow-hidden">
-      {/* PixelBlast Background */}
+    <section className="min-h-screen pt-20 flex items-center relative overflow-hidden bg-background">
+      {/* Galaxy Background */}
       <div className="absolute inset-0">
-        <PixelBlast 
-          color="#beff00"
-          gap={6}
-          speed={35}
+        <Galaxy 
+          density={1.5}
+          hueShift={350}
+          glowIntensity={0.3}
+          saturation={1}
+          starSpeed={0.7}
+          rotationSpeed={0.15}
+          mouseRepulsion={true}
+          repulsionStrength={2.5}
+          twinkleIntensity={0}
+          autoCenterRepulsion={0}
+          speed={1}
         />
       </div>
 

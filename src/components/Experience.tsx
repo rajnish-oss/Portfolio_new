@@ -41,7 +41,7 @@ const ExperienceCard = ({
   index: number;
 }) => {
   return (
-    <div className={`bg-gradient-to-br ${experience.color} backdrop-blur-sm border border-border rounded-2xl p-8 md:p-12 shadow-2xl w-full`}>
+    <div className={`bg-gradient-to-br ${experience.color} backdrop-blur-md bg-secondary/80 border border-border rounded-2xl p-8 md:p-12 shadow-2xl w-full`}>
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
         <div>
@@ -94,11 +94,11 @@ const Experience = () => {
   return (
     <section className="relative bg-secondary/30">
       {/* Header */}
-      <div className="py-24 text-center relative z-10">
+      <div className="py-12 text-center relative z-10">
         <div>
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
+          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
             MY <span className="text-primary">
-              <ScrollFloat animationDuration={1.2} ease="back.out(1.7)" stagger={0.04}>
+              <ScrollFloat animationDuration={0.6} ease="power3.out" scrollStart="top 95%" stagger={0.02}>
                 JOURNEY
               </ScrollFloat>
             </span>
@@ -111,7 +111,7 @@ const Experience = () => {
 
       {/* ScrollStack Experience Cards */}
       <ScrollStack 
-        totalHeight="300vh"
+        totalHeight="180vh"
         slideHeight="auto"
       >
         {experiences.map((experience, index) => (

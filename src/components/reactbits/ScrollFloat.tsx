@@ -21,11 +21,11 @@ const ScrollFloat = ({
   scrollContainerRef,
   containerClassName = "",
   textClassName = "",
-  animationDuration = 1,
-  ease = "back.out(1.7)",
-  scrollStart = "top 80%",
+  animationDuration = 0.5,
+  ease = "power3.out",
+  scrollStart = "top 90%",
   scrollEnd = "bottom 20%",
-  stagger = 0.03,
+  stagger = 0.02,
 }: ScrollFloatProps) => {
   const containerRef = useRef<HTMLHeadingElement>(null);
   const charsRef = useRef<HTMLSpanElement[]>([]);
