@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import ServicesMarquee from "@/components/ServicesMarquee";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import FlowingMenuSection from "@/components/FlowingMenuSection";
 import Testimonials from "@/components/Testimonials";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
@@ -11,6 +12,7 @@ import Experience from "@/components/Experience";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import GradualBlur from "@/components/reactbits/GradualBlur";
+import TargetCursor from "@/components/reactbits/TargetCursor";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const Index = () => {
@@ -53,7 +55,10 @@ const Index = () => {
           <ServicesMarquee />
           <About />
           <Skills />
-          <Testimonials />
+          <FlowingMenuSection />
+          <TargetCursor className="block">
+            <Testimonials />
+          </TargetCursor>
           <Services />
           <Projects />
           <Experience />
