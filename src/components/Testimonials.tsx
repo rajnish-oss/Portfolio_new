@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GlareHover from "@/components/reactbits/GlareHover";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,7 +14,6 @@ const testimonials = [
     name: "Sarah Mitchell",
     role: "CEO",
     company: "TechStart Inc.",
-    image: "https://framerusercontent.com/images/wpDspSB5J6TyMpd7mXzSsKy0ds.png",
   },
   {
     quote:
@@ -21,7 +21,6 @@ const testimonials = [
     name: "James Anderson",
     role: "Product Manager",
     company: "GrowthLab",
-    image: "https://framerusercontent.com/images/bqyH4SQ3ViY4NXPNOSPlg7xRIk.png",
   },
   {
     quote:
@@ -29,7 +28,6 @@ const testimonials = [
     name: "Emily Chen",
     role: "Founder",
     company: "Innovatech",
-    image: "https://framerusercontent.com/images/20HCPp6bWHQ8CflnKsLgR8W7mI.png",
   },
 ];
 
@@ -60,11 +58,15 @@ const Testimonials = () => {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      {/* Grid Lines */}
+      {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border" />
         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border" />
         <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border" />
+        
+        {/* Gradient orbs */}
+        <div className="absolute top-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-60 h-60 bg-violet-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -85,35 +87,66 @@ const Testimonials = () => {
 
         <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <GlareHover
               key={index}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="bg-card border border-border p-8 rounded-xl"
+              glareColor="190, 255, 0"
+              glareOpacity={0.15}
+              glareSize={300}
+              borderRadius="16px"
+              className="h-full"
             >
-              <Quote className="w-10 h-10 text-primary mb-6" />
-
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-primary fill-primary" />
-                ))}
-              </div>
-
-              <p className="text-muted-foreground font-light leading-relaxed mb-8">"{testimonial.quote}"</p>
-
-              <div className="flex items-center gap-4">
-                {/* <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                /> */}
-                <div>
-                  <h4 className="font-display font-semibold text-foreground">{testimonial.name}</h4>
-                  <p className="text-muted-foreground text-sm">
-                    {testimonial.role}, {testimonial.company}
-                  </p>
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="bg-card/80 backdrop-blur-md border border-border/50 p-8 rounded-2xl h-full group hover:border-primary/50 transition-all duration-500 relative overflow-hidden"
+              >
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                 </div>
-              </div>
-            </motion.div>
+                
+                <div className="relative z-10">
+                  <Quote className="w-10 h-10 text-primary mb-6 group-hover:scale-110 transition-transform duration-300" />
+
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1 * i }}
+                        viewport={{ once: true }}
+                      >
+                        <Star className="w-4 h-4 text-primary fill-primary" />
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <p className="text-muted-foreground font-light leading-relaxed mb-8 group-hover:text-foreground/80 transition-colors duration-300">
+                    "{testimonial.quote}"
+                  </p>
+
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/20">
+                      <span className="font-display font-bold text-primary text-lg">
+                        {testimonial.name.charAt(0)}
+                      </span>
+                    </div>
+                    <div>
+                      <h4 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-muted-foreground text-sm">
+                        {testimonial.role}, {testimonial.company}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </GlareHover>
           ))}
         </div>
       </div>
