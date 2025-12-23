@@ -1,34 +1,41 @@
 import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
-const services = [
-  "Web Design",
-  "Mobile App Design",
-  "Digital Marketing",
-  "Graphic Design",
-  "Content Creation",
-  "Social Media Management",
-  "SEO Optimization",
-  "Brand Identity",
-  "UI/UX Design",
-  "Motion Graphics",
+const skills = [
+  "React",
+  "TypeScript",
+  "Node.js",
+  "Next.js",
+  "Tailwind CSS",
+  "PostgreSQL",
+  "GraphQL",
+  "Docker",
+  "AWS",
+  "Figma",
 ];
 
 const ServicesMarquee = () => {
   return (
     <section className="py-8 bg-secondary border-y border-border overflow-hidden">
-      <div className="flex animate-marquee">
-        {[...services, ...services].map((service, index) => (
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="flex animate-marquee"
+      >
+        {[...skills, ...skills].map((skill, index) => (
           <div
             key={index}
             className="flex items-center gap-4 px-8 whitespace-nowrap"
           >
             <Star className="w-4 h-4 text-primary fill-primary flex-shrink-0" />
             <span className="text-muted-foreground text-sm font-medium">
-              {service}
+              {skill}
             </span>
           </div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

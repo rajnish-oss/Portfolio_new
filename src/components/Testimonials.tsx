@@ -1,30 +1,60 @@
 import { Star, Quote } from "lucide-react";
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote: "DesignCube transformed our brand with their exceptional design skills. The team was professional, creative, and delivered beyond our expectations. Highly recommend!",
+    quote: "Alex delivered our project ahead of schedule with exceptional quality. His attention to detail and communication made the collaboration seamless. Highly recommend!",
     name: "Sarah Mitchell",
-    role: "Marketing Director",
+    role: "CEO",
     company: "TechStart Inc.",
     image: "https://framerusercontent.com/images/wpDspSB5J6TyMpd7mXzSsKy0ds.png",
   },
   {
-    quote: "Working with DesignCube was a game-changer for our business. Their attention to detail and innovative approach helped us stand out in a competitive market.",
+    quote: "Working with Alex was a game-changer for our product. His technical expertise and design sensibility helped us create something truly special.",
     name: "James Anderson",
-    role: "CEO",
+    role: "Product Manager",
     company: "GrowthLab",
     image: "https://framerusercontent.com/images/bqyH4SQ3ViY4NXPNOSPlg7xRIk.png",
   },
   {
-    quote: "DesignCube's UX/UI design expertise transformed our app into a user-friendly and engaging platform. Their collaborative approach and commitment to excellence were evident in every stage.",
-    name: "Michael Brown",
-    role: "Product Manager",
+    quote: "Alex transformed our outdated platform into a modern, user-friendly application. His problem-solving skills and dedication were impressive throughout.",
+    name: "Emily Chen",
+    role: "Founder",
     company: "Innovatech",
-    image: "https://framerusercontent.com/images/wYHEdCwM2EtawA0fIzu2egzayU.png",
+    image: "https://framerusercontent.com/images/20HCPp6bWHQ8CflnKsLgR8W7mI.png",
   },
 ];
 
 const Testimonials = () => {
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!cardsRef.current) return;
+
+    gsap.fromTo(
+      cardsRef.current.children,
+      { opacity: 0, y: 50, rotateY: -10 },
+      {
+        opacity: 1,
+        y: 0,
+        rotateY: 0,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: cardsRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }, []);
+
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Grid Lines */}
@@ -35,20 +65,27 @@ const Testimonials = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-            WHAT OUR <span className="text-primary">CLIENTS SAY</span>
+            CLIENT <span className="text-primary">REVIEWS</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
-            Don't just take our word for it. Here's what our clients have to say about working with us.
+            What clients say about working with me.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-card border border-border p-8 rounded-xl hover-lift"
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="bg-card border border-border p-8 rounded-xl"
             >
               <Quote className="w-10 h-10 text-primary mb-6" />
               
@@ -77,7 +114,7 @@ const Testimonials = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
