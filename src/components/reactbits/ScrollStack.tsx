@@ -1,106 +1,146 @@
-import { ReactNode, useRef, useEffect, useState, Children, cloneElement, isValidElement } from "react";
-import Lenis from "lenis";
+import {
+  ReactNode,
+  useRef,
+  useEffect,
+  useState,
+  Children,
+  cloneElement,
+  isValidElement,
+  CSSProperties,
+} from "react";
 
 interface ScrollStackProps {
   children: ReactNode;
-  itemDistance?: number;
-  itemStackDistance?: number;
-  stackPosition?: string;
-  baseScale?: number;
-  rotationAmount?: number;
-  blurAmount?: number;
-  fadeOut?: boolean;
+  totalHeight?: string;
+  persistentElements?: ReactNode;
+  slideHeight?: string;
+  styles?: {
+    container?: CSSProperties;
+    slideContainer?: CSSProperties;
+    slide?: CSSProperties;
+  };
+  spring?: {
+    stiffness?: number;
+    damping?: number;
+  };
 }
 
 const ScrollStack = ({
   children,
-  itemDistance = 100,
-  itemStackDistance = 30,
-  stackPosition = "20%",
-  baseScale = 0.85,
-  rotationAmount = 5,
-  blurAmount = 0,
-  fadeOut = true,
+  totalHeight = "300vh",
+  persistentElements,
+  slideHeight = "100vh",
+  styles = {},
+  spring = { stiffness: 0.04, damping: 0.9 },
 }: ScrollStackProps) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const [scrollY, setScrollY] = useState(0);
-  const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.1,
-      smoothWheel: true,
-    });
-    setLenisInstance(lenis);
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!lenisInstance) return;
-
-    const handleScroll = () => {
-      if (wrapperRef.current) {
-        const rect = wrapperRef.current.getBoundingClientRect();
-        const scrollProgress = -rect.top;
-        setScrollY(scrollProgress);
-      }
-    };
-
-    lenisInstance.on("scroll", handleScroll);
-    return () => {
-      lenisInstance.off("scroll", handleScroll);
-    };
-  }, [lenisInstance]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const slidePositions = useRef<number[]>([]);
+  const velocity = useRef(0);
+  const lastScrollY = useRef(0);
 
   const items = Children.toArray(children);
-  const totalItems = items.length;
+  const totalSlides = items.length;
+
+  useEffect(() => {
+    slidePositions.current = items.map((_, i) => i);
+  }, [items.length]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const containerTop = -rect.top;
+      const containerHeight =
+        containerRef.current.offsetHeight - window.innerHeight;
+
+      const rawProgress = containerTop / containerHeight;
+      const clampedProgress = Math.max(0, Math.min(1, rawProgress));
+
+      const slideProgress = clampedProgress * (totalSlides - 1);
+      const activeSlide = Math.floor(slideProgress);
+
+      velocity.current = (window.scrollY - lastScrollY.current) * 0.1;
+      lastScrollY.current = window.scrollY;
+
+      setCurrentSlide(Math.min(activeSlide, totalSlides - 1));
+      setScrollProgress(slideProgress);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [totalSlides]);
+
+  const getSlideStyle = (index: number): CSSProperties => {
+    const diff = scrollProgress - index;
+    const absDiff = Math.abs(diff);
+
+    let translateY = 0;
+    let scale = 1;
+    let opacity = 1;
+    let rotateX = 0;
+    let zIndex = totalSlides - index;
+
+    if (diff < 0) {
+      // Slide below current
+      translateY = (index - scrollProgress) * 100;
+      scale = 1;
+      opacity = 1;
+    } else if (diff >= 0 && diff < 1) {
+      // Active slide transitioning
+      translateY = -diff * 20;
+      scale = 1 - diff * 0.05;
+      opacity = 1 - diff * 0.3;
+      rotateX = diff * 5;
+      zIndex = totalSlides + 1;
+    } else {
+      // Stacked slides
+      translateY = -20 - (diff - 1) * 10;
+      scale = 0.95 - (diff - 1) * 0.02;
+      opacity = 0.7 - (diff - 1) * 0.2;
+      rotateX = 5 + (diff - 1) * 2;
+    }
+
+    return {
+      transform: `translateY(${translateY}%) scale(${scale}) perspective(1000px) rotateX(${rotateX}deg)`,
+      opacity: Math.max(0, opacity),
+      zIndex,
+      transition: `transform 0.1s ease-out, opacity 0.1s ease-out`,
+      ...styles.slide,
+    };
+  };
 
   return (
     <div
-      ref={wrapperRef}
+      ref={containerRef}
       className="relative"
-      style={{ height: `${totalItems * itemDistance + 100}vh` }}
+      style={{ height: totalHeight, ...styles.container }}
     >
       <div
-        className="sticky flex flex-col items-center justify-start w-full"
-        style={{ top: stackPosition, height: `calc(100vh - ${stackPosition})` }}
+        className="sticky top-0 h-screen overflow-hidden"
+        style={styles.slideContainer}
       >
-        {items.map((child, index) => {
-          const progress = Math.max(0, scrollY - index * window.innerHeight * (itemDistance / 100));
-          const maxProgress = window.innerHeight * (itemDistance / 100);
-          const normalizedProgress = Math.min(progress / maxProgress, 1);
-          
-          const scale = baseScale + (1 - baseScale) * (1 - normalizedProgress);
-          const translateY = -normalizedProgress * itemStackDistance * (totalItems - index);
-          const rotateX = normalizedProgress * rotationAmount;
-          const blur = normalizedProgress * blurAmount;
-          const opacity = fadeOut ? 1 - normalizedProgress * 0.4 : 1;
-
-          return (
+        {persistentElements}
+        <div className="relative w-full h-full">
+          {items.map((child, index) => (
             <div
               key={index}
-              className="absolute w-full max-w-4xl px-4"
-              style={{
-                transform: `translateY(${translateY}px) scale(${scale}) perspective(1000px) rotateX(${rotateX}deg)`,
-                opacity,
-                filter: blurAmount > 0 ? `blur(${blur}px)` : undefined,
-                zIndex: totalItems - index,
-                transition: "transform 0.1s ease-out, opacity 0.1s ease-out, filter 0.1s ease-out",
-              }}
+              className="absolute inset-0 flex items-center justify-center"
+              style={getSlideStyle(index)}
             >
-              {isValidElement(child) ? cloneElement(child) : child}
+              <div
+                className="w-full max-w-6xl mx-auto px-4"
+                style={{ height: slideHeight }}
+              >
+                {isValidElement(child) ? cloneElement(child) : child}
+              </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </div>
   );

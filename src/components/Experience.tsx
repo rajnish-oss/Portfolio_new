@@ -111,10 +111,8 @@ const Experience = () => {
 
       {/* ScrollStack Experience Cards */}
       <ScrollStack 
-        itemDistance={80} 
-        itemStackDistance={40} 
-        stackPosition="15%" 
-        baseScale={0.9}
+        totalHeight="300vh"
+        slideHeight="auto"
       >
         {experiences.map((experience, index) => (
           <ExperienceCard 
