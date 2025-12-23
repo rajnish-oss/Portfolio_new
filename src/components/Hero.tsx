@@ -4,8 +4,16 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollFloat from "@/components/reactbits/ScrollFloat";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const stats = [
+  { value: "50+", label: "Projects Completed" },
+  { value: "30+", label: "Happy Clients" },
+  { value: "5+", label: "Years Experience" },
+  { value: "10+", label: "Technologies" },
+];
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -36,11 +44,11 @@ const Hero = () => {
     <section ref={sectionRef} className="min-h-screen pt-20 flex items-center relative overflow-hidden">
       {/* Grid Lines Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border" />
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border" />
-        <div className="absolute top-1/3 left-0 right-0 h-px bg-border" />
-        <div className="absolute top-2/3 left-0 right-0 h-px bg-border" />
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border/50" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border/50" />
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border/50" />
+        <div className="absolute top-1/3 left-0 right-0 h-px bg-border/50" />
+        <div className="absolute top-2/3 left-0 right-0 h-px bg-border/50" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -109,26 +117,45 @@ const Hero = () => {
             </Button>
           </motion.div>
 
-          {/* Stats */}
-          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
-            {[
-              { value: "50+", label: "Projects Completed" },
-              { value: "30+", label: "Happy Clients" },
-              { value: "5+", label: "Years Experience" },
-              { value: "10+", label: "Technologies" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="font-display font-bold text-4xl md:text-5xl text-primary mb-2">
-                  {stat.value}
+          {/* Enhanced Stats Section */}
+          <div className="mt-24 relative">
+            {/* Stats Grid with Grid Lines */}
+            <div ref={statsRef} className="relative grid grid-cols-2 md:grid-cols-4">
+              {/* Vertical Grid Lines */}
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
+              <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border hidden md:block" />
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border" />
+              <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border hidden md:block" />
+              <div className="absolute right-0 top-0 bottom-0 w-px bg-border" />
+              
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="relative text-center py-12 px-6 group"
+                >
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <motion.div
+                    className="relative z-10"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-primary mb-3 tracking-tight">
+                      {stat.value}
+                    </div>
+                    <div className="text-muted-foreground text-sm md:text-base uppercase tracking-widest font-light">
+                      {stat.label}
+                    </div>
+                  </motion.div>
                 </div>
-                <div className="text-muted-foreground text-sm">{stat.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Decorative Elements */}
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

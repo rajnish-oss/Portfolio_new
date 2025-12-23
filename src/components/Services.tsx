@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollFloat from "@/components/reactbits/ScrollFloat";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,7 +83,12 @@ const Services = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground">
-            WHAT I <span className="text-primary">OFFER</span>
+            WHAT I{" "}
+            <span className="text-primary">
+              <ScrollFloat animationDuration={1} ease="back.out(1.5)" stagger={0.05}>
+                OFFER
+              </ScrollFloat>
+            </span>
           </h2>
         </motion.div>
 
@@ -91,20 +97,25 @@ const Services = () => {
             <motion.div
               key={index}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="bg-card border border-border p-8 rounded-lg group cursor-pointer"
+              className="bg-card border border-border p-8 rounded-lg group cursor-pointer relative overflow-hidden"
             >
-              <div className="flex items-start justify-between mb-6">
-                <span className="text-primary font-display font-bold text-2xl">
-                  {service.number}
-                </span>
-                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:rotate-45 transition-all duration-300" />
+              {/* Hover gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                <div className="flex items-start justify-between mb-6">
+                  <span className="text-primary font-display font-bold text-2xl">
+                    {service.number}
+                  </span>
+                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:rotate-45 transition-all duration-300" />
+                </div>
+                <h3 className="font-display font-semibold text-2xl text-foreground mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground font-light leading-relaxed">
+                  {service.description}
+                </p>
               </div>
-              <h3 className="font-display font-semibold text-2xl text-foreground mb-4">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                {service.description}
-              </p>
             </motion.div>
           ))}
         </div>
