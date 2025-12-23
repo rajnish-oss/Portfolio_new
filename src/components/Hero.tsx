@@ -1,63 +1,32 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 import VariableProximity from "@/components/reactbits/VariableProximity";
-import FluidGlass from "@/components/reactbits/FluidGlass";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const stats = [
-  { value: "50+", label: "Projects Completed" },
-  { value: "30+", label: "Happy Clients" },
-  { value: "5+", label: "Years Experience" },
-  { value: "10+", label: "Technologies" },
-];
+import PixelBlast from "@/components/reactbits/PixelBlast";
 
 const Hero = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
   const heroContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!statsRef.current) return;
-
-    gsap.fromTo(
-      statsRef.current.children,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: statsRef.current,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-  }, []);
-
   return (
-    <section ref={sectionRef} className="min-h-screen pt-20 flex items-center relative overflow-hidden">
-      {/* Grid Lines Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border/50" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border/50" />
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border/50" />
-        <div className="absolute top-1/3 left-0 right-0 h-px bg-border/50" />
-        <div className="absolute top-2/3 left-0 right-0 h-px bg-border/50" />
+    <section className="min-h-screen pt-20 flex items-center relative overflow-hidden">
+      {/* PixelBlast Background */}
+      <div className="absolute inset-0">
+        <PixelBlast 
+          particleCount={200} 
+          particleSize={4} 
+          speed={0.3}
+          color="190, 255, 0"
+        />
       </div>
 
-      {/* FluidGlass decorative element */}
-      <div className="absolute top-1/4 right-10 w-64 h-64 opacity-50 hidden lg:block">
-        <FluidGlass className="w-full h-full" intensity={15} blur={30}>
-          <div className="w-full h-full rounded-3xl bg-gradient-to-br from-primary/10 to-accent/10" />
-        </FluidGlass>
+      {/* Grid Lines Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border/30" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border/30" />
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border/30" />
+        <div className="absolute top-1/3 left-0 right-0 h-px bg-border/30" />
+        <div className="absolute top-2/3 left-0 right-0 h-px bg-border/30" />
       </div>
 
       <div ref={heroContainerRef} className="container mx-auto px-6 relative z-10">
@@ -67,7 +36,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-secondary px-4 py-2 rounded-full mb-8"
+            className="inline-flex items-center gap-2 bg-secondary/80 backdrop-blur-sm px-4 py-2 rounded-full mb-8 border border-border/50"
           >
             <Star className="w-4 h-4 text-primary fill-primary" />
             <span className="text-muted-foreground text-sm">Full-Stack Developer & Designer</span>
@@ -119,60 +88,24 @@ const Hero = () => {
               View My Work
               <ArrowRight className="w-5 h-5" />
             </Button>
-            <Button variant="outline" size="xl">
+            <Button variant="outline" size="xl" className="backdrop-blur-sm">
               Download Resume
             </Button>
           </motion.div>
 
-          {/* Enhanced Stats Section */}
-          <div className="mt-24 relative">
-            {/* Stats Grid with Grid Lines */}
-            <div ref={statsRef} className="relative grid grid-cols-2 md:grid-cols-4">
-              {/* Vertical Grid Lines */}
-              <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
-              <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border hidden md:block" />
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border" />
-              <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border hidden md:block" />
-              <div className="absolute right-0 top-0 bottom-0 w-px bg-border" />
-              
-              {stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="relative text-center py-12 px-6 group"
-                >
-                  {/* Hover Glow Effect */}
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <motion.div
-                    className="relative z-10"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-primary mb-3 tracking-tight">
-                      {stat.value}
-                    </div>
-                    <div className="text-muted-foreground text-sm md:text-base uppercase tracking-widest font-light">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Minimal Stats Line */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="mt-20 text-muted-foreground text-sm tracking-widest uppercase"
+          >
+            <span className="text-primary font-semibold">50+</span> Projects • 
+            <span className="text-primary font-semibold"> 5+</span> Years • 
+            <span className="text-primary font-semibold"> 30+</span> Clients
+          </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
-      >
-        <div className="w-6 h-10 border-2 border-muted-foreground rounded-full flex justify-center pt-2">
-          <div className="w-1 h-2 bg-muted-foreground rounded-full" />
-        </div>
-      </motion.div>
     </section>
   );
 };
