@@ -3,22 +3,22 @@ import GlareHover from "@/components/reactbits/GlareHover";
 
 const skillCategories = [
   {
-    title: "Frontend",
+    title: "FRONTEND",
     skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Framer Motion"],
     icon: "🎨",
   },
   {
-    title: "Backend",
+    title: "BACKEND",
     skills: ["Node.js", "Express", "PostgreSQL", "MongoDB", "GraphQL"],
     icon: "⚙️",
   },
   {
-    title: "Tools & DevOps",
+    title: "TOOLS & DEVOPS",
     skills: ["Git", "Docker", "AWS", "Vercel", "GitHub Actions"],
     icon: "🛠️",
   },
   {
-    title: "Design",
+    title: "DESIGN",
     skills: ["Figma", "Adobe XD", "Photoshop", "UI/UX", "Prototyping"],
     icon: "✨",
   },
@@ -46,7 +46,7 @@ const Skills = () => {
           </p>
         </div>
 
-        {/* Skills Grid with GlareHover */}
+        {/* Skills Grid with cut corners */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category, index) => (
             <GlareHover
@@ -55,13 +55,19 @@ const Skills = () => {
               glareOpacity={0.15}
               glareSize={250}
               className="h-full"
+              borderRadius="0"
             >
-              <div className="bg-card/80 backdrop-blur-sm border border-border h-full p-8 transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 group">
+              <div 
+                className="bg-card/90 backdrop-blur-sm border border-border h-full p-8 transition-all duration-300 hover:border-primary/50 group"
+                style={{
+                  clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))",
+                }}
+              >
                 {/* Icon */}
                 <div className="text-4xl mb-4">{category.icon}</div>
                 
                 {/* Title */}
-                <h3 className="font-display font-semibold text-xl text-primary mb-6 group-hover:text-primary/90 transition-colors">
+                <h3 className="font-display font-semibold text-lg text-primary mb-6 group-hover:text-primary/90 transition-colors tracking-wide">
                   {category.title}
                 </h3>
                 

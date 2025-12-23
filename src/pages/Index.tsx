@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import ServicesMarquee from "@/components/ServicesMarquee";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
-import FlowingMenuSection from "@/components/FlowingMenuSection";
 import Testimonials from "@/components/Testimonials";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
@@ -55,10 +54,7 @@ const Index = () => {
           <ServicesMarquee />
           <About />
           <Skills />
-          <FlowingMenuSection />
-          <TargetCursor className="block">
-            <Testimonials />
-          </TargetCursor>
+          <Testimonials />
           <Services />
           <Projects />
           <Experience />
