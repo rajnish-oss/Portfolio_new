@@ -12,10 +12,6 @@ const experiences = [
     description:
       "Leading development of scalable web applications using React and Node.js. Mentoring junior developers and implementing best practices.",
     skills: ["React", "Node.js", "AWS", "TypeScript"],
-    gradient: "from-violet-500/30 via-purple-500/20 to-fuchsia-500/10",
-    accentColor: "text-violet-400",
-    borderColor: "border-violet-500/30",
-    badgeBg: "bg-violet-500/20",
   },
   {
     year: "2021 - 2023",
@@ -25,10 +21,6 @@ const experiences = [
     description:
       "Built and maintained multiple client-facing applications. Improved site performance by 40% through optimization techniques.",
     skills: ["Vue.js", "Python", "PostgreSQL", "Docker"],
-    gradient: "from-cyan-500/30 via-teal-500/20 to-emerald-500/10",
-    accentColor: "text-cyan-400",
-    borderColor: "border-cyan-500/30",
-    badgeBg: "bg-cyan-500/20",
   },
   {
     year: "2019 - 2021",
@@ -38,10 +30,6 @@ const experiences = [
     description:
       "Developed responsive web interfaces for various clients. Collaborated closely with designers to deliver pixel-perfect implementations.",
     skills: ["React", "SCSS", "JavaScript", "Figma"],
-    gradient: "from-orange-500/30 via-amber-500/20 to-yellow-500/10",
-    accentColor: "text-orange-400",
-    borderColor: "border-orange-500/30",
-    badgeBg: "bg-orange-500/20",
   },
 ];
 
@@ -53,16 +41,14 @@ const ExperienceCard = ({
   index: number;
 }) => {
   return (
-    <div
-      className={`relative bg-gradient-to-br ${experience.gradient} backdrop-blur-xl border ${experience.borderColor} rounded-2xl p-8 md:p-12 shadow-2xl w-full`}
-    >
-      {/* Blur background overlay */}
-      <div className="absolute inset-0 rounded-2xl bg-background/40 backdrop-blur-md -z-10" />
+    <div className="relative bg-primary/20 backdrop-blur-xl border border-primary/30 rounded-2xl p-8 md:p-12 shadow-2xl w-full">
+      {/* Permanent blur background overlay */}
+      <div className="absolute inset-0 rounded-2xl bg-background/60 backdrop-blur-md -z-10" />
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
         <div>
-          <div className={`flex items-center gap-2 ${experience.accentColor} mb-2`}>
+          <div className="flex items-center gap-2 text-primary mb-2">
             <Calendar className="w-4 h-4" />
             <span className="font-display font-semibold text-sm">
               {experience.year}
@@ -84,7 +70,7 @@ const ExperienceCard = ({
         </div>
 
         {/* Index Badge */}
-        <div className={`font-display font-bold text-6xl md:text-8xl ${experience.accentColor} opacity-30`}>
+        <div className="font-display font-bold text-6xl md:text-8xl text-primary/30">
           0{index + 1}
         </div>
       </div>
@@ -99,7 +85,7 @@ const ExperienceCard = ({
         {experience.skills.map((skill, skillIndex) => (
           <span
             key={skillIndex}
-            className={`px-4 py-2 ${experience.badgeBg} backdrop-blur-sm border ${experience.borderColor} rounded-full text-sm text-foreground font-medium`}
+            className="px-4 py-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full text-sm text-foreground font-medium"
           >
             {skill}
           </span>
@@ -115,10 +101,10 @@ const Experience = () => {
       {/* Scroll-based SVG lines background */}
       <ScrollLines lineCount={6} strokeWidth={1.5} />
       
-      {/* Header */}
-      <div className="text-center relative z-10">
+      {/* Header - reduced padding */}
+      <div className="text-center pt-16 pb-8 relative z-10">
         <div>
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
+          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
             MY{" "}
             <span className="text-primary">
               <ScrollFloat
@@ -137,7 +123,7 @@ const Experience = () => {
       </div>
 
       {/* ScrollStack Experience Cards */}
-      <ScrollStack totalHeight="300vh" slideHeight="auto">
+      <ScrollStack totalHeight="250vh" slideHeight="auto">
         {experiences.map((experience, index) => (
           <ExperienceCard key={index} experience={experience} index={index} />
         ))}
