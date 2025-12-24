@@ -5,7 +5,7 @@ import Magnetic from "./reactbits/Magnetic";
 
 const CTA = () => {
   return (
-    <section className="py-32 relative overflow-hidden bg-background">
+    <section className="py-16 relative overflow-hidden bg-background">
       {/* Clean background with subtle gradient */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-secondary/20 via-transparent to-background" />
@@ -20,20 +20,20 @@ const CTA = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-primary via-primary to-primary/90 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden"
+          className="bg-gradient-to-br from-secondary via-secondary to-secondary/90 border border-border rounded-3xl p-10 md:p-16 text-center relative overflow-hidden"
         >
           {/* Subtle gradient overlays */}
-          <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary-foreground/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-primary-foreground/10 rounded-full blur-3xl" />
+          <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
 
           <div className="relative z-10">
-            <h2 className="font-display font-black text-4xl md:text-6xl lg:text-7xl text-primary-foreground mb-6">
+            <h2 className="font-display font-black text-4xl md:text-6xl lg:text-7xl text-foreground mb-4">
               <ScrollFloat animationDuration={1} ease="back.out(1.7)" stagger={0.03}>
                 LET'S BUILD
               </ScrollFloat>
               <br />
               <motion.span
-                className="text-primary-foreground/80 inline-block"
+                className="text-primary inline-block"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
@@ -44,7 +44,7 @@ const CTA = () => {
             </h2>
 
             <motion.p
-              className="text-primary-foreground/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light"
+              className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-8 font-light"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -64,7 +64,7 @@ const CTA = () => {
               <Magnetic>
                 <a
                   href="mailto:hello@alex.dev"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary-foreground text-primary font-display font-bold rounded-xl hover:bg-primary-foreground/90 transition-all duration-300 group"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-bold rounded-xl hover:bg-primary/90 transition-all duration-300 group"
                 >
                   <Mail className="w-5 h-5" />
                   Get In Touch
