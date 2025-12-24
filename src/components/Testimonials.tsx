@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GlareHover from "@/components/reactbits/GlareHover";
+import ParticleNetwork from "@/components/reactbits/ParticleNetwork";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,16 +58,23 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Animated Background */}
+    <section className="py-20 relative overflow-hidden">
+      {/* Interactive Particle Network Background */}
+      <ParticleNetwork
+        particleCount={35}
+        particleSize={1.5}
+        particleColor="hsl(90, 100%, 60%)"
+        lineColor="rgba(190, 255, 0, 0.08)"
+        maxDistance={100}
+        speed={0.2}
+        interactive={true}
+      />
+
+      {/* Static Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border" />
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border" />
-        
-        {/* Gradient orbs */}
-        <div className="absolute top-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-20 w-60 h-60 bg-violet-500/5 rounded-full blur-3xl" />
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border/50" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border/50" />
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border/50" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -75,9 +83,9 @@ const Testimonials = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
+          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
             CLIENT <span className="text-primary">REVIEWS</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
@@ -85,7 +93,7 @@ const Testimonials = () => {
           </p>
         </motion.div>
 
-        <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
+        <div ref={cardsRef} className="grid md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <GlareHover
               key={index}
@@ -101,7 +109,7 @@ const Testimonials = () => {
                 className="bg-card/80 backdrop-blur-md border border-border/50 p-8 rounded-2xl h-full group hover:border-primary/50 transition-all duration-500 relative overflow-hidden"
               >
                 {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -109,9 +117,9 @@ const Testimonials = () => {
                 </div>
                 
                 <div className="relative z-10">
-                  <Quote className="w-10 h-10 text-primary mb-6 group-hover:scale-110 transition-transform duration-300" />
+                  <Quote className="w-10 h-10 text-primary mb-5 group-hover:scale-110 transition-transform duration-300" />
 
-                  <div className="flex gap-1 mb-4">
+                  <div className="flex gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
                       <motion.div
                         key={i}
@@ -125,7 +133,7 @@ const Testimonials = () => {
                     ))}
                   </div>
 
-                  <p className="text-muted-foreground font-light leading-relaxed mb-8 group-hover:text-foreground/80 transition-colors duration-300">
+                  <p className="text-muted-foreground font-light leading-relaxed mb-6 group-hover:text-foreground/80 transition-colors duration-300">
                     "{testimonial.quote}"
                   </p>
 
