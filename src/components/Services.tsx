@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollFloat from "@/components/reactbits/ScrollFloat";
+import ScrollLines from "@/components/reactbits/ScrollLines";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,12 +67,15 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="services" className="py-24 relative">
+    <section id="services" className="py-24 relative overflow-hidden">
+      {/* Scroll-based SVG lines background */}
+      <ScrollLines lineCount={4} strokeWidth={2} color="hsl(var(--primary))" />
+      
       {/* Grid Lines */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border" />
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border" />
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border/50" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border/50" />
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border/50" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GradualBlur from "@/components/reactbits/GradualBlur";
+import ScrollGrid from "@/components/reactbits/ScrollGrid";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,8 +68,11 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="py-24 bg-secondary/30 relative">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-24 bg-secondary/30 relative overflow-hidden">
+      {/* Scroll-based grid background */}
+      <ScrollGrid gridSize={100} />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

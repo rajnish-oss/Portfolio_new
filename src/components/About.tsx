@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VariableProximity from "@/components/reactbits/VariableProximity";
+import ScrollGrid from "@/components/reactbits/ScrollGrid";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,12 +61,15 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="py-24 relative">
+    <section id="about" className="py-24 relative overflow-hidden">
+      {/* Scroll-based grid background */}
+      <ScrollGrid gridSize={80} />
+      
       {/* Grid Lines */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border" />
-        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border" />
+        <div className="absolute left-1/4 top-0 bottom-0 w-px bg-border/50" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border/50" />
+        <div className="absolute left-3/4 top-0 bottom-0 w-px bg-border/50" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
