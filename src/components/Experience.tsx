@@ -1,7 +1,6 @@
 import { Calendar, Briefcase, MapPin } from "lucide-react";
-import ScrollStack from "./reactbits/ScrollStack";
 import ScrollFloat from "./reactbits/ScrollFloat";
-import ScrollLines from "./reactbits/ScrollLines";
+import { motion } from "framer-motion";
 
 const experiences = [
   {
@@ -40,94 +39,120 @@ const ExperienceCard = ({
   experience: (typeof experiences)[0];
   index: number;
 }) => {
+  const isEven = index % 2 === 0;
+  
   return (
-    <div className="relative bg-primary/20 backdrop-blur-xl border border-primary/30 rounded-2xl p-8 md:p-12 shadow-2xl w-full">
-      {/* Permanent blur background overlay */}
-      <div className="absolute inset-0 rounded-2xl bg-background/60 backdrop-blur-md -z-10" />
-      
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
-        <div>
-          <div className="flex items-center gap-2 text-primary mb-2">
+    <motion.div 
+      className={`flex items-center gap-8 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
+      initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      {/* Card */}
+      <div className="flex-1">
+        <div className="relative bg-primary/15 backdrop-blur-xl border border-primary/30 rounded-2xl p-6 md:p-8 shadow-2xl group hover:bg-primary/20 transition-all duration-300">
+          {/* Permanent blur background overlay */}
+          <div className="absolute inset-0 rounded-2xl bg-background/60 backdrop-blur-md -z-10" />
+          
+          {/* Glow effect on hover */}
+          <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-primary/10 to-transparent -z-10" />
+          
+          {/* Year badge */}
+          <div className="flex items-center gap-2 text-primary mb-3">
             <Calendar className="w-4 h-4" />
             <span className="font-display font-semibold text-sm">
               {experience.year}
             </span>
           </div>
-          <h3 className="font-display font-bold text-2xl md:text-3xl text-foreground mb-2">
+          
+          {/* Role */}
+          <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-2">
             {experience.role}
           </h3>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <Briefcase className="w-4 h-4" />
+          
+          {/* Company & Location */}
+          <div className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm mb-4">
+            <div className="flex items-center gap-1.5">
+              <Briefcase className="w-3.5 h-3.5" />
               <span>{experience.company}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
+            <div className="flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5" />
               <span>{experience.location}</span>
             </div>
           </div>
-        </div>
 
-        {/* Index Badge */}
-        <div className="font-display font-bold text-6xl md:text-8xl text-primary/30">
+          {/* Description */}
+          <p className="text-muted-foreground text-sm font-light leading-relaxed mb-5">
+            {experience.description}
+          </p>
+
+          {/* Skills */}
+          <div className="flex flex-wrap gap-2">
+            {experience.skills.map((skill, skillIndex) => (
+              <span
+                key={skillIndex}
+                className="px-3 py-1.5 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full text-xs text-foreground font-medium"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      {/* Timeline center */}
+      <div className="flex flex-col items-center">
+        {/* Number circle */}
+        <motion.div 
+          className="w-12 h-12 rounded-full bg-primary flex items-center justify-center font-display font-bold text-primary-foreground text-lg shadow-lg shadow-primary/30"
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          transition={{ duration: 0.4, delay: index * 0.1 + 0.2, type: "spring" }}
+          viewport={{ once: true }}
+        >
           0{index + 1}
-        </div>
+        </motion.div>
       </div>
-
-      {/* Description */}
-      <p className="text-muted-foreground text-lg font-light leading-relaxed mb-8">
-        {experience.description}
-      </p>
-
-      {/* Skills */}
-      <div className="flex flex-wrap gap-2">
-        {experience.skills.map((skill, skillIndex) => (
-          <span
-            key={skillIndex}
-            className="px-4 py-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full text-sm text-foreground font-medium"
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
+      
+      {/* Empty space for alternating layout */}
+      <div className="flex-1 hidden md:block" />
+    </motion.div>
   );
 };
 
 const Experience = () => {
   return (
-    <section className="relative bg-secondary/30">
-      {/* Scroll-based SVG lines background */}
-      <ScrollLines lineCount={6} strokeWidth={1.5} />
+    <section className="relative py-20 bg-secondary/30 overflow-hidden">
+      {/* Vertical timeline line */}
+      <div className="absolute left-1/2 top-32 bottom-20 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent transform -translate-x-1/2 hidden md:block" />
       
-      {/* Header - reduced padding */}
-      <div className="text-center pt-16 pb-8 relative z-10">
-        <div>
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
-            MY{" "}
-            <span className="text-primary">
-              <ScrollFloat
-                animationDuration={1.2}
-                ease="back.out(1.7)"
-                stagger={0.04}
-              >
-                JOURNEY
-              </ScrollFloat>
-            </span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light px-6">
-            A timeline of my professional growth and career milestones.
-          </p>
-        </div>
+      {/* Header */}
+      <div className="text-center mb-16 relative z-10">
+        <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
+          MY{" "}
+          <span className="text-primary">
+            <ScrollFloat
+              animationDuration={1.2}
+              ease="back.out(1.7)"
+              stagger={0.04}
+            >
+              JOURNEY
+            </ScrollFloat>
+          </span>
+        </h2>
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light px-6">
+          A timeline of my professional growth and career milestones.
+        </p>
       </div>
 
-      {/* ScrollStack Experience Cards */}
-      <ScrollStack totalHeight="250vh" slideHeight="auto">
+      {/* Timeline cards */}
+      <div className="max-w-5xl mx-auto px-6 space-y-12 relative z-10">
         {experiences.map((experience, index) => (
           <ExperienceCard key={index} experience={experience} index={index} />
         ))}
-      </ScrollStack>
+      </div>
     </section>
   );
 };
