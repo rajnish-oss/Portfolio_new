@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import ServicesMarquee from "@/components/ServicesMarquee";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import GitHubHeatmap from "@/components/GitHubHeatmap";
 import Testimonials from "@/components/Testimonials";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
@@ -54,6 +55,7 @@ const Index = () => {
           <ServicesMarquee />
           <About />
           <Skills />
+          <GitHubHeatmap />
           <Testimonials />
           <Services />
           <Projects />
