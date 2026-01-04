@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import VariableProximity from "@/components/reactbits/VariableProximity";
 import Galaxy from "@/components/reactbits/Galaxy";
+import ResumeModal from "@/components/ResumeModal";
 
 const Hero = () => {
   const heroContainerRef = useRef<HTMLDivElement>(null);
@@ -58,7 +59,7 @@ const Hero = () => {
           >
             <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-foreground leading-tight">
               HI, I'M{" "}
-              <span className="text-primary">ALEX</span>
+              <span className="text-primary">ANISH</span>
               <br />
               <VariableProximity
                 label="I BUILD THINGS"
@@ -95,9 +96,13 @@ const Hero = () => {
               View My Work
               <ArrowRight className="w-5 h-5" />
             </Button>
-            <Button variant="outline" size="xl" className="backdrop-blur-sm">
-              Download Resume
-            </Button>
+            <ResumeModal
+              trigger={
+                <Button variant="outline" size="xl" className="backdrop-blur-sm">
+                  View My Resume
+                </Button>
+              }
+            />
           </motion.div>
 
           {/* Minimal Stats Line */}
@@ -107,9 +112,9 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 1 }}
             className="mt-20 text-muted-foreground text-sm tracking-widest uppercase"
           >
-            <span className="text-primary font-semibold">50+</span> Projects • 
-            <span className="text-primary font-semibold"> 5+</span> Years • 
-            <span className="text-primary font-semibold"> 30+</span> Clients
+            <span className="text-primary font-semibold">25+</span> Projects • 
+            <span className="text-primary font-semibold"> 2+</span> Years • 
+            <span className="text-primary font-semibold"> 20+</span> Clients
           </motion.div>
         </div>
       </div>
