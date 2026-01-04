@@ -1,4 +1,4 @@
-import { Calendar, Briefcase, MapPin } from "lucide-react";
+import { Briefcase } from "lucide-react";
 import ScrollFloat from "./reactbits/ScrollFloat";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -7,32 +7,20 @@ const experiences = [
   {
     year: "2023",
     endYear: "Present",
-    role: "Senior Full-Stack Developer",
+    role: "Full-Stack Developer",
     company: "TechCorp Inc.",
-    location: "San Francisco, CA",
     description:
       "Leading development of scalable web applications using React and Node.js. Mentoring junior developers and implementing best practices.",
     skills: ["React", "Node.js", "AWS", "TypeScript"],
   },
   {
-    year: "2021",
+    year: "2022",
     endYear: "2023",
-    role: "Full-Stack Developer",
+    role: "Frontend Developer",
     company: "StartupXYZ",
-    location: "Remote",
     description:
       "Built and maintained multiple client-facing applications. Improved site performance by 40% through optimization techniques.",
-    skills: ["Vue.js", "Python", "PostgreSQL", "Docker"],
-  },
-  {
-    year: "2019",
-    endYear: "2021",
-    role: "Frontend Developer",
-    company: "DigitalAgency",
-    location: "New York, NY",
-    description:
-      "Developed responsive web interfaces for various clients. Collaborated closely with designers to deliver pixel-perfect implementations.",
-    skills: ["React", "SCSS", "JavaScript", "Figma"],
+    skills: ["Vue.js", "React", "PostgreSQL", "Docker"],
   },
 ];
 
@@ -93,10 +81,6 @@ const ExperienceCard = ({
               <div className="flex items-center gap-1.5">
                 <Briefcase className="w-4 h-4 text-primary/70" />
                 <span>{experience.company}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-primary/70" />
-                <span>{experience.location}</span>
               </div>
             </div>
 

@@ -63,7 +63,7 @@ const CTA = () => {
             >
               <Magnetic>
                 <a
-                  href="mailto:hello@alex.dev"
+                  href="mailto:hello@anish.dev"
                   className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-bold rounded-xl hover:bg-primary/90 transition-all duration-300 group"
                 >
                   <Mail className="w-5 h-5" />

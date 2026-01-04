@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, MapPin, Github, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Mail, Github, Twitter, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Magnetic from "@/components/reactbits/Magnetic";
@@ -13,9 +13,8 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { label: "GitHub", href: "#", icon: Github },
-    { label: "LinkedIn", href: "#", icon: Linkedin },
-    { label: "Twitter", href: "#", icon: Twitter },
+    { label: "GitHub", href: "https://github.com/anishchowdhury9935", icon: Github },
+    { label: "Twitter", href: "https://x.com/Back_track_og", icon: Twitter },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -68,25 +67,8 @@ const Footer = () => {
               CONTACT
             </h4>
             <div className="space-y-3 mb-6">
-              <motion.div 
-                className="flex items-start gap-4 group cursor-pointer"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="w-10 h-10 rounded-xl bg-border flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="font-light text-foreground/80 group-hover:text-foreground transition-colors">
-                    San Francisco, CA
-                  </p>
-                  <p className="font-light text-muted-foreground text-sm">
-                    United States
-                  </p>
-                </div>
-              </motion.div>
               <motion.a 
-                href="mailto:hello@alex.dev" 
+                href="mailto:hello@anish.dev" 
                 className="flex items-start gap-4 group"
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
@@ -96,7 +78,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <p className="font-light text-foreground/80 group-hover:text-foreground transition-colors">
-                    hello@alex.dev
+                    hello@anish.dev
                   </p>
                   <p className="font-light text-muted-foreground text-sm">
                     Drop me a line
@@ -183,12 +165,12 @@ const Footer = () => {
               <span className="text-primary-foreground font-display font-bold text-xl">A</span>
             </div>
             <span className="font-display font-bold text-2xl tracking-wider">
-              ALEX.DEV
+              ANISH.DEV
             </span>
           </motion.div>
 
           <p className="text-sm font-light text-muted-foreground text-center">
-            © {currentYear} Alex. Crafted with precision and passion.
+            © {currentYear} Anish. Crafted with precision and passion.
           </p>
 
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
