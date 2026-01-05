@@ -92,8 +92,8 @@ const GitHubHeatmap = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
             className="rounded-2xl border border-primary/20 bg-card/50 backdrop-blur-sm p-6 sm:p-8"
           >
             <h3 className="text-4xl sm:text-5xl font-black text-foreground mb-6 leading-tight">
@@ -106,12 +106,12 @@ const GitHubHeatmap = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="flex items-center justify-center p-4 rounded-xl border border-primary/20 bg-background/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+                  transition={{ duration: 0.25, delay: index * 0.05, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  whileHover={{ scale: 1.05, y: -2, transition: { type: "spring", stiffness: 400, damping: 20 } }}
+                  className="flex items-center justify-center p-4 rounded-xl border border-primary/20 bg-background/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-200"
                 >
                   {link.icon === "github" && (
                     <svg className="w-6 h-6 text-foreground" viewBox="0 0 24 24" fill="currentColor">
@@ -143,8 +143,8 @@ const GitHubHeatmap = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
             className="lg:col-span-2 rounded-2xl border border-primary/20 bg-card/50 backdrop-blur-sm p-6 sm:p-8"
           >
             {/* Header */}
@@ -207,10 +207,10 @@ const GitHubHeatmap = () => {
                           return (
                             <motion.div
                               key={dayIndex}
-                              className={`w-[11px] h-[11px] rounded-sm ${getColor(day.count)} cursor-pointer transition-all duration-200 hover:ring-2 hover:ring-primary/50`}
+                              className={`w-[11px] h-[11px] rounded-sm ${getColor(day.count)} cursor-pointer transition-all duration-150 hover:ring-2 hover:ring-primary/50`}
                               onMouseEnter={() => setHoveredCell({ date: formatDate(day.date), count: day.count })}
                               onMouseLeave={() => setHoveredCell(null)}
-                              whileHover={{ scale: 1.3 }}
+                              whileHover={{ scale: 1.3, transition: { type: "spring", stiffness: 500, damping: 25 } }}
                             />
                           );
                         })}
