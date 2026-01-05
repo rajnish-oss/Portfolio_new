@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GlareHover from "@/components/reactbits/GlareHover";
-import ParticleNetwork from "@/components/reactbits/ParticleNetwork";
+import PixelGrid from "@/components/reactbits/PixelGrid";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,16 +59,8 @@ const Testimonials = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      {/* Interactive Particle Network Background */}
-      <ParticleNetwork
-        particleCount={35}
-        particleSize={1.5}
-        particleColor="hsl(90, 100%, 60%)"
-        lineColor="rgba(190, 255, 0, 0.08)"
-        maxDistance={100}
-        speed={0.2}
-        interactive={true}
-      />
+      {/* Animated Pixel Grid Background */}
+      <PixelGrid pixelSize={14} speed={0.8} opacity={0.15} />
 
       {/* Static Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
