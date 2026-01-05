@@ -6,6 +6,7 @@ const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
 interface ContactFormRequest {
@@ -16,9 +17,30 @@ interface ContactFormRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  console.log("Request method:", req.method);
+  console.log("Request origin:", req.headers.get("origin"));
+
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Only allow POST
+  if (req.method !== "POST") {
+    return new Response(
+      JSON.stringify({ error: "Method not allowed" }),
+      { status: 405, headers: { "Content-Type": "application/json", ...corsHeaders } }
+    );
+  }
+
+  // Check for API key
+  const apiKey = Deno.env.get("RESEND_API_KEY");
+  if (!apiKey) {
+    console.error("RESEND_API_KEY is not configured");
+    return new Response(
+      JSON.stringify({ error: "Email service not configured" }),
+      { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
+    );
   }
 
   try {

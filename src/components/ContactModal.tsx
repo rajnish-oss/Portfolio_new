@@ -81,10 +81,12 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
         onClose();
       }, 2000);
     } catch (error: any) {
-      console.error("Error sending message:", error);
+      console.error("Error sending message - full error:", error);
+      console.error("Error context:", error?.context);
+      console.error("Error message:", error?.message);
       toast({
         title: "Failed to send message",
-        description: error.message || "Please try again later.",
+        description: error?.context?.message || error?.message || "Please try again later.",
         variant: "destructive",
       });
     } finally {
