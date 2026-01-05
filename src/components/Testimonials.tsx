@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GlareHover from "@/components/reactbits/GlareHover";
-import PixelGrid from "@/components/reactbits/PixelGrid";
+import PixelBands from "@/components/reactbits/PixelBands";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,8 +59,8 @@ const Testimonials = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      {/* Animated Pixel Grid Background */}
-      <PixelGrid pixelSize={14} speed={0.8} opacity={0.15} />
+      {/* Animated Pixel Bands Background - fades at edges for blending */}
+      <PixelBands pixelSize={10} speed={0.6} opacity={0.25} />
 
       {/* Static Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
