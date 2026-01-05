@@ -82,7 +82,7 @@ const GitHubHeatmap = () => {
   const socialLinks = [
     { icon: "github", url: "https://github.com/anishchowdhury9935", label: "GitHub" },
     { icon: "twitter", url: "https://x.com/Back_track_og", label: "Twitter/X" },
-    { icon: "discord", url: "#", label: "Discord" },
+    { icon: "discord", url: "https://discordapp.com/users/1011559805850234981", label: "Discord" },
     { icon: "email", url: "mailto:anish@example.com", label: "Email" },
   ];
 
