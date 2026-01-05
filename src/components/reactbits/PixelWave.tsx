@@ -3,9 +3,10 @@ import { useEffect, useRef } from "react";
 interface PixelWaveProps {
   pixelSize?: number;
   speed?: number;
+  opacity?: number;
 }
 
-const PixelWave = ({ pixelSize = 20, speed = 1 }: PixelWaveProps) => {
+const PixelWave = ({ pixelSize = 16, speed = 1, opacity = 0.3 }: PixelWaveProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>(0);
 
@@ -27,11 +28,32 @@ const PixelWave = ({ pixelSize = 20, speed = 1 }: PixelWaveProps) => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Three color layers with different lime shades
-    const layers = [
-      { color: "hsla(90, 100%, 60%, 0.04)", speedMultiplier: 0.3, waveFreq: 0.02, phaseOffset: 0 },
-      { color: "hsla(90, 100%, 60%, 0.07)", speedMultiplier: 0.5, waveFreq: 0.03, phaseOffset: 2 },
-      { color: "hsla(90, 100%, 60%, 0.1)", speedMultiplier: 0.8, waveFreq: 0.04, phaseOffset: 4 },
+    // Three wave layers with different colors matching the reference
+    const waves = [
+      { 
+        color: "hsl(0, 0%, 25%)", // Dark gray layer (back)
+        baseHeight: 0.3,
+        amplitude: 0.15,
+        frequency: 0.008,
+        speed: 0.3,
+        phaseOffset: 0,
+      },
+      { 
+        color: "hsl(90, 40%, 50%)", // Olive/lime layer (middle)
+        baseHeight: 0.5,
+        amplitude: 0.12,
+        frequency: 0.01,
+        speed: 0.4,
+        phaseOffset: 2,
+      },
+      { 
+        color: "hsl(90, 100%, 60%)", // Bright lime layer (front)
+        baseHeight: 0.65,
+        amplitude: 0.1,
+        frequency: 0.012,
+        speed: 0.5,
+        phaseOffset: 4,
+      },
     ];
 
     let time = 0;
@@ -39,35 +61,43 @@ const PixelWave = ({ pixelSize = 20, speed = 1 }: PixelWaveProps) => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const cols = Math.ceil(canvas.width / pixelSize) + 1;
-      const rows = Math.ceil(canvas.height / pixelSize) + 1;
+      const cols = Math.ceil(canvas.width / pixelSize);
+      const rows = Math.ceil(canvas.height / pixelSize);
 
-      // Draw each layer
-      layers.forEach((layer) => {
-        ctx.fillStyle = layer.color;
+      // Draw each wave layer from back to front
+      waves.forEach((wave) => {
+        ctx.fillStyle = wave.color;
+        ctx.globalAlpha = opacity;
 
-        for (let y = 0; y < rows; y++) {
-          for (let x = 0; x < cols; x++) {
-            // Create wave effect using sine waves
-            const wave1 = Math.sin((x * layer.waveFreq) + (time * speed * layer.speedMultiplier) + layer.phaseOffset);
-            const wave2 = Math.sin((y * layer.waveFreq * 0.8) + (time * speed * layer.speedMultiplier * 0.7) + layer.phaseOffset);
-            const wave3 = Math.sin(((x + y) * layer.waveFreq * 0.5) + (time * speed * layer.speedMultiplier * 0.5));
-            
-            // Combine waves for more organic movement
-            const combinedWave = (wave1 + wave2 + wave3) / 3;
-            
-            // Only draw pixel if wave value is above threshold
-            if (combinedWave > 0.2) {
-              const opacity = (combinedWave - 0.2) * 1.25; // Normalize to 0-1
-              ctx.globalAlpha = opacity;
-              ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize - 1, pixelSize - 1);
-            }
+        for (let x = 0; x < cols; x++) {
+          // Calculate wave height at this x position with stair-step effect
+          const waveX = x * pixelSize;
+          
+          // Multiple sine waves combined for organic movement
+          const wave1 = Math.sin(waveX * wave.frequency + time * speed * wave.speed + wave.phaseOffset);
+          const wave2 = Math.sin(waveX * wave.frequency * 0.5 + time * speed * wave.speed * 0.7 + wave.phaseOffset * 1.5) * 0.5;
+          const wave3 = Math.sin(waveX * wave.frequency * 2 + time * speed * wave.speed * 1.2) * 0.25;
+          
+          const combinedWave = (wave1 + wave2 + wave3) / 1.75;
+          
+          // Calculate the row where wave starts (from bottom up)
+          const waveHeight = wave.baseHeight + combinedWave * wave.amplitude;
+          const startRow = Math.floor(rows * (1 - waveHeight));
+          
+          // Draw pixels from wave line down to bottom
+          for (let y = startRow; y < rows; y++) {
+            ctx.fillRect(
+              x * pixelSize,
+              y * pixelSize,
+              pixelSize - 1,
+              pixelSize - 1
+            );
           }
         }
       });
 
       ctx.globalAlpha = 1;
-      time += 0.016; // ~60fps timing
+      time += 0.016;
 
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -78,7 +108,7 @@ const PixelWave = ({ pixelSize = 20, speed = 1 }: PixelWaveProps) => {
       window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationRef.current);
     };
-  }, [pixelSize, speed]);
+  }, [pixelSize, speed, opacity]);
 
   return (
     <canvas
