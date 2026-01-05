@@ -1,10 +1,15 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import ScrollFloat from "./reactbits/ScrollFloat";
 import Magnetic from "./reactbits/Magnetic";
+import ContactModal from "./ContactModal";
 
 const CTA = () => {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
   return (
+    <>
     <section className="py-16 relative overflow-hidden bg-background">
       {/* Clean background with subtle gradient */}
       <div className="absolute inset-0 pointer-events-none">
@@ -62,20 +67,23 @@ const CTA = () => {
               viewport={{ once: true }}
             >
               <Magnetic>
-                <a
-                  href="mailto:hello@anish.dev"
+                <button
+                  onClick={() => setIsContactOpen(true)}
                   className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display font-bold rounded-xl hover:bg-primary/90 transition-all duration-300 group"
                 >
                   <Mail className="w-5 h-5" />
                   Get In Touch
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </button>
               </Magnetic>
             </motion.div>
           </div>
         </motion.div>
       </div>
     </section>
+    
+    <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+    </>
   );
 };
 

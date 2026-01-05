@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { ArrowRight, Mail, Github, Twitter, ArrowUpRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Magnetic from "@/components/reactbits/Magnetic";
+import ContactModal from "@/components/ContactModal";
 
 const Footer = () => {
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const menuLinks = [
     { label: "Home", href: "#" },
     { label: "About", href: "#about" },
@@ -21,6 +24,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
+    <>
     <motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -88,7 +92,7 @@ const Footer = () => {
               </motion.a>
             </div>
             <Magnetic strength={0.4} radius={80}>
-              <Button variant="default" size="lg" className="gap-2 group">
+              <Button variant="default" size="lg" className="gap-2 group" onClick={() => setIsContactOpen(true)}>
                 Send a Message
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -186,6 +190,9 @@ const Footer = () => {
         </motion.div>
       </div>
     </motion.footer>
+    
+    <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+  </>
   );
 };
 

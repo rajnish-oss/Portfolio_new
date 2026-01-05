@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import FlowingMenu from "@/components/reactbits/FlowingMenu";
+import ContactModal from "@/components/ContactModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const navLinks = [
     { label: "Home", href: "#" },
@@ -21,6 +23,7 @@ const Header = () => {
   }));
 
   return (
+    <>
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -62,7 +65,7 @@ const Header = () => {
             transition={{ delay: 0.5, duration: 0.4 }}
             className="hidden md:block"
           >
-            <Button variant="hero" size="lg" className="gap-2">
+            <Button variant="hero" size="lg" className="gap-2" onClick={() => setIsContactOpen(true)}>
               Hire Me
               <ArrowRight className="w-4 h-4" />
             </Button>
@@ -93,7 +96,7 @@ const Header = () => {
                 items={flowingMenuItems}
                 className="[&_a]:text-2xl [&_a]:py-3"
               />
-              <Button variant="hero" size="lg" className="mt-6 w-full gap-2" onClick={() => setIsMenuOpen(false)}>
+              <Button variant="hero" size="lg" className="mt-6 w-full gap-2" onClick={() => { setIsMenuOpen(false); setIsContactOpen(true); }}>
                 Hire Me
                 <ArrowRight className="w-4 h-4" />
               </Button>
@@ -102,6 +105,9 @@ const Header = () => {
         )}
       </AnimatePresence>
     </motion.header>
+    
+    <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+  </>
   );
 };
 
