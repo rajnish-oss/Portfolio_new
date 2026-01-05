@@ -6,7 +6,7 @@ interface PixelWaveProps {
   opacity?: number;
 }
 
-const PixelWave = ({ pixelSize = 16, speed = 1, opacity = 0.3 }: PixelWaveProps) => {
+const PixelWave = ({ pixelSize = 16, speed = 1, opacity = 0.15 }: PixelWaveProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>(0);
 
