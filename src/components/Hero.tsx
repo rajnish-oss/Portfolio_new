@@ -92,7 +92,14 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button variant="hero" size="xl" className="gap-2">
+            <Button 
+              variant="hero" 
+              size="xl" 
+              className="gap-2"
+              onClick={() => {
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               View My Work
               <ArrowRight className="w-5 h-5" />
             </Button>
