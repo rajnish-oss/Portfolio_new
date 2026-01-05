@@ -50,18 +50,17 @@ const Projects = () => {
 
     gsap.fromTo(
       gridRef.current.children,
-      { opacity: 0, y: 60, scale: 0.95 },
+      { opacity: 0, y: 30 },
       {
         opacity: 1,
         y: 0,
-        scale: 1,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: "power3.out",
+        stagger: 0.08,
+        duration: 0.4,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: gridRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+          start: "top 85%",
+          once: true,
         },
       }
     );
@@ -98,9 +97,9 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              whileHover={{ y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="group cursor-pointer"
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="group cursor-pointer will-change-transform"
             >
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl mb-4">
                 <GradualBlur direction="bottom" strength={1} divCount={3} className="w-full h-full">

@@ -105,6 +105,105 @@ const GitHubHeatmap = () => {
     url: "mailto:anish@example.com",
     label: "Email"
   }];
-  return;
+  return (
+    <section className="py-24 bg-background">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-[1fr_300px] gap-8">
+          {/* Heatmap Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="bg-secondary/50 border border-border rounded-2xl p-6 overflow-hidden"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Github className="w-6 h-6 text-primary" />
+              <h3 className="font-display font-semibold text-xl text-foreground">
+                Contribution Activity
+              </h3>
+              <div className="ml-auto flex items-center gap-2 text-sm text-muted-foreground">
+                <TrendingUp className="w-4 h-4 text-emerald-500" />
+                <span>50 contributions</span>
+              </div>
+            </div>
+
+            {/* Month Labels */}
+            <div className="flex mb-2 ml-8">
+              {months.map((month, i) => (
+                <div
+                  key={i}
+                  className="text-xs text-muted-foreground"
+                  style={{
+                    marginLeft: i === 0 ? 0 : `${(month.weekIndex - (months[i - 1]?.weekIndex || 0)) * 14 - 20}px`,
+                  }}
+                >
+                  {month.name}
+                </div>
+              ))}
+            </div>
+
+            {/* Heatmap Grid */}
+            <div className="flex gap-[3px] overflow-x-auto pb-2">
+              {weeks.map((week, weekIndex) => (
+                <div key={weekIndex} className="flex flex-col gap-[3px]">
+                  {week.map((day, dayIndex) => (
+                    <div
+                      key={dayIndex}
+                      className={`w-3 h-3 rounded-sm ${getColor(day.count)} transition-colors duration-150`}
+                      onMouseEnter={() =>
+                        setHoveredCell({
+                          date: formatDate(day.date),
+                          count: day.count,
+                        })
+                      }
+                      onMouseLeave={() => setHoveredCell(null)}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+
+            {/* Tooltip */}
+            {hoveredCell && (
+              <div className="mt-4 text-sm text-muted-foreground">
+                {hoveredCell.count > 0
+                  ? `${hoveredCell.count} contribution on ${hoveredCell.date}`
+                  : `No contributions on ${hoveredCell.date}`}
+              </div>
+            )}
+          </motion.div>
+
+          {/* Links Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="bg-secondary/50 border border-border rounded-2xl p-6"
+          >
+            <h3 className="font-display font-semibold text-xl text-foreground mb-6">
+              LINKS
+            </h3>
+            <div className="space-y-3">
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-background/50 border border-border hover:border-primary/50 hover:bg-primary/5 transition-colors"
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  <span className="text-muted-foreground">{link.label}</span>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 };
 export default GitHubHeatmap;
