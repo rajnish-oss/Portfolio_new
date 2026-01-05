@@ -5,6 +5,7 @@ import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VariableProximity from "@/components/reactbits/VariableProximity";
+import PixelWave from "@/components/reactbits/PixelWave";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,6 +61,11 @@ const About = () => {
 
   return (
     <section id="about" className="py-24 relative overflow-hidden">
+      {/* Multi-layered Pixel Wave Background */}
+      <div className="absolute inset-0 z-0">
+        <PixelWave pixelSize={18} speed={0.8} />
+      </div>
+      
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
