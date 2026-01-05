@@ -31,27 +31,27 @@ const PixelWave = ({ pixelSize = 16, speed = 1, opacity = 0.15 }: PixelWaveProps
     // Three wave layers with different colors matching the reference
     const waves = [
       { 
-        color: "hsl(0, 0%, 25%)", // Dark gray layer (back)
-        baseHeight: 0.3,
-        amplitude: 0.15,
-        frequency: 0.008,
-        speed: 0.3,
+        color: "hsl(0, 0%, 20%)", // Dark gray layer (back)
+        baseHeight: 0.25,
+        amplitude: 0.12,
+        frequency: 0.006,
+        speed: 0.25,
         phaseOffset: 0,
       },
       { 
-        color: "hsl(90, 40%, 50%)", // Olive/lime layer (middle)
-        baseHeight: 0.5,
-        amplitude: 0.12,
-        frequency: 0.01,
-        speed: 0.4,
+        color: "hsl(85, 50%, 35%)", // Olive/lime layer (middle)
+        baseHeight: 0.45,
+        amplitude: 0.1,
+        frequency: 0.008,
+        speed: 0.35,
         phaseOffset: 2,
       },
       { 
-        color: "hsl(90, 100%, 60%)", // Bright lime layer (front)
-        baseHeight: 0.65,
-        amplitude: 0.1,
-        frequency: 0.012,
-        speed: 0.5,
+        color: "hsl(80, 90%, 50%)", // Bright lime layer (front)
+        baseHeight: 0.6,
+        amplitude: 0.08,
+        frequency: 0.01,
+        speed: 0.45,
         phaseOffset: 4,
       },
     ];
