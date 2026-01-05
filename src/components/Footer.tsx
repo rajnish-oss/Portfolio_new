@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, Github, Twitter, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Mail, Github, Twitter, ArrowUpRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Magnetic from "@/components/reactbits/Magnetic";
@@ -15,6 +15,7 @@ const Footer = () => {
   const socialLinks = [
     { label: "GitHub", href: "https://github.com/anishchowdhury9935", icon: Github },
     { label: "Twitter", href: "https://x.com/Back_track_og", icon: Twitter },
+    { label: "Discord", href: "https://discordapp.com/users/1011559805850234981", icon: MessageCircle },
   ];
 
   const currentYear = new Date().getFullYear();
