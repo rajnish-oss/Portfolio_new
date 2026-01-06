@@ -98,13 +98,7 @@ interface SkillIconProps {
 }
 
 const SkillIcon = ({ name, icon, invert, index }: SkillIconProps) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.4, delay: index * 0.05 }}
-    viewport={{ once: false }}
-    className="flex flex-col items-center gap-2 group"
-  >
+  <div className="flex flex-col items-center gap-2 group">
     <motion.div
       whileHover={{ scale: 1.1, y: -5 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -120,7 +114,7 @@ const SkillIcon = ({ name, icon, invert, index }: SkillIconProps) => (
     <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors text-center">
       {name}
     </span>
-  </motion.div>
+  </div>
 );
 
 interface FeaturedSkillProps {
@@ -131,13 +125,7 @@ interface FeaturedSkillProps {
 }
 
 const FeaturedSkill = ({ name, icon, progress, index }: FeaturedSkillProps) => (
-  <motion.div
-    initial={{ opacity: 0, x: -20 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    viewport={{ once: false, amount: 0.5 }}
-    className="bg-secondary/60 border border-border/50 rounded-xl p-4 hover:border-primary/50 transition-all duration-300"
-  >
+  <div className="bg-secondary/60 border border-border/50 rounded-xl p-4 hover:border-primary/50 transition-all duration-300">
     <div className="flex items-center gap-3 mb-3">
       <div className="w-10 h-10 bg-background/50 rounded-lg flex items-center justify-center">
         <img src={icon} alt={name} className="w-6 h-6 object-contain" loading="lazy" />
@@ -154,7 +142,7 @@ const FeaturedSkill = ({ name, icon, progress, index }: FeaturedSkillProps) => (
         className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
       />
     </div>
-  </motion.div>
+  </div>
 );
 
 interface SectionHeaderProps {
@@ -163,17 +151,11 @@ interface SectionHeaderProps {
 }
 
 const SectionHeader = ({ title, highlight }: SectionHeaderProps) => (
-  <motion.div
-    initial={{ opacity: 0, x: -20 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.5 }}
-    viewport={{ once: false }}
-    className="flex items-center gap-2 mb-6"
-  >
+  <div className="flex items-center gap-2 mb-6">
     <span className="text-primary font-display font-bold">{highlight}</span>
     <span className="text-foreground font-display">{title}</span>
     <ArrowRight className="w-4 h-4 text-muted-foreground" />
-  </motion.div>
+  </div>
 );
 
 const Skills = () => {
@@ -187,19 +169,14 @@ const Skills = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 items-start mb-16">
           {/* Left: Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: false }}
-          >
+          <div>
             <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">MY SKILLS</span>
             <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
               Know-How &
               <br />
               <span className="text-primary">Recognitions</span>
             </h2>
-          </motion.div>
+          </div>
 
           {/* Right: Featured skills with progress */}
           <div className="grid sm:grid-cols-2 gap-4">
