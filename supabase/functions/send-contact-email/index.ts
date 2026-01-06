@@ -78,53 +78,119 @@ const handler = async (req: Request): Promise<Response> => {
         <!DOCTYPE html>
         <html>
           <head>
-            <style>
-              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; padding: 40px; }
-              .container { max-width: 600px; margin: 0 auto; background: #111; border-radius: 16px; padding: 32px; border: 1px solid #222; }
-              .header { border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 24px; }
-              .logo { color: #ADFF00; font-size: 24px; font-weight: bold; }
-              .field { margin-bottom: 16px; }
-              .label { color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-              .value { color: #fff; font-size: 16px; }
-              .message-box { background: #0a0a0a; border-radius: 12px; padding: 20px; margin-top: 20px; border: 1px solid #222; }
-              .footer { margin-top: 24px; padding-top: 20px; border-top: 1px solid #222; color: #666; font-size: 12px; }
-              a { color: #ADFF00; text-decoration: none; }
-            </style>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
           </head>
-          <body>
-            <div class="container">
-              <div class="header">
-                <div class="logo">ANISH.DEV</div>
-                <p style="color: #888; margin: 8px 0 0 0;">New contact form submission</p>
-              </div>
-              
-              <div class="field">
-                <div class="label">From</div>
-                <div class="value">${name}</div>
-              </div>
-              
-              <div class="field">
-                <div class="label">Email</div>
-                <div class="value"><a href="mailto:${email}">${email}</a></div>
-              </div>
-              
-              ${subject ? `
-              <div class="field">
-                <div class="label">Subject</div>
-                <div class="value">${subject}</div>
-              </div>
-              ` : ''}
-              
-              <div class="message-box">
-                <div class="label">Message</div>
-                <div class="value" style="margin-top: 8px; line-height: 1.6; white-space: pre-wrap;">${message}</div>
-              </div>
-              
-              <div class="footer">
-                <p>Reply directly to this email to respond to ${name}.</p>
-                <p>Sent from your portfolio contact form at anishportfolio.online</p>
-              </div>
-            </div>
+          <body style="margin: 0; padding: 0; background-color: #0a0a0a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #0a0a0a; padding: 40px 20px;">
+              <tr>
+                <td align="center">
+                  <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%;">
+                    
+                    <!-- Header with gradient border -->
+                    <tr>
+                      <td style="background: linear-gradient(135deg, #ADFF00 0%, #7ACC00 100%); padding: 2px; border-radius: 20px 20px 0 0;">
+                        <div style="background-color: #111111; padding: 32px; border-radius: 18px 18px 0 0;">
+                          <table width="100%">
+                            <tr>
+                              <td>
+                                <h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.5px;">
+                                  <span style="color: #ADFF00;">ANISH</span><span style="color: #ffffff;">.DEV</span>
+                                </h1>
+                              </td>
+                              <td align="right">
+                                <span style="background: linear-gradient(135deg, #ADFF00 0%, #7ACC00 100%); color: #0a0a0a; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">New Message</span>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    <!-- Main content -->
+                    <tr>
+                      <td style="background-color: #111111; padding: 0 32px;">
+                        
+                        <!-- Sender info card -->
+                        <table width="100%" style="background: linear-gradient(145deg, #1a1a1a 0%, #151515 100%); border-radius: 16px; margin-bottom: 24px; border: 1px solid #252525;">
+                          <tr>
+                            <td style="padding: 24px;">
+                              <table width="100%">
+                                <tr>
+                                  <td width="56" valign="top">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #ADFF00 0%, #7ACC00 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                      <span style="color: #0a0a0a; font-size: 20px; font-weight: 700; line-height: 48px; text-align: center; display: block; width: 48px;">${name.charAt(0).toUpperCase()}</span>
+                                    </div>
+                                  </td>
+                                  <td style="padding-left: 16px;">
+                                    <p style="margin: 0 0 4px 0; color: #ffffff; font-size: 18px; font-weight: 600;">${name}</p>
+                                    <a href="mailto:${email}" style="color: #ADFF00; font-size: 14px; text-decoration: none;">${email}</a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                        
+                        ${subject ? `
+                        <!-- Subject -->
+                        <table width="100%" style="margin-bottom: 20px;">
+                          <tr>
+                            <td>
+                              <p style="margin: 0 0 8px 0; color: #666666; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">Subject</p>
+                              <p style="margin: 0; color: #ffffff; font-size: 16px; font-weight: 500;">${subject}</p>
+                            </td>
+                          </tr>
+                        </table>
+                        ` : ''}
+                        
+                        <!-- Message box -->
+                        <table width="100%" style="background-color: #0a0a0a; border-radius: 16px; border: 1px solid #252525; margin-bottom: 24px;">
+                          <tr>
+                            <td style="padding: 24px;">
+                              <p style="margin: 0 0 12px 0; color: #666666; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">Message</p>
+                              <p style="margin: 0; color: #e0e0e0; font-size: 15px; line-height: 1.7; white-space: pre-wrap;">${message}</p>
+                            </td>
+                          </tr>
+                        </table>
+                        
+                        <!-- Reply CTA -->
+                        <table width="100%" style="margin-bottom: 32px;">
+                          <tr>
+                            <td align="center">
+                              <a href="mailto:${email}" style="display: inline-block; background: linear-gradient(135deg, #ADFF00 0%, #7ACC00 100%); color: #0a0a0a; padding: 14px 32px; border-radius: 12px; font-size: 14px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">Reply to ${name.split(' ')[0]}</a>
+                            </td>
+                          </tr>
+                        </table>
+                        
+                      </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                      <td style="background: linear-gradient(135deg, #ADFF00 0%, #7ACC00 100%); padding: 2px; border-radius: 0 0 20px 20px;">
+                        <div style="background-color: #111111; padding: 24px 32px; border-radius: 0 0 18px 18px;">
+                          <table width="100%">
+                            <tr>
+                              <td>
+                                <p style="margin: 0; color: #666666; font-size: 12px;">Sent from your portfolio contact form</p>
+                                <p style="margin: 4px 0 0 0;">
+                                  <a href="https://anishportfolio.online" style="color: #ADFF00; font-size: 12px; text-decoration: none;">anishportfolio.online</a>
+                                </p>
+                              </td>
+                              <td align="right">
+                                <p style="margin: 0; color: #444444; font-size: 11px;">© ${new Date().getFullYear()} Anish Chowdhury</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+                    
+                  </table>
+                </td>
+              </tr>
+            </table>
           </body>
         </html>
       `,
