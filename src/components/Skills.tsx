@@ -102,7 +102,7 @@ const SkillIcon = ({ name, icon, invert, index }: SkillIconProps) => (
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.4, delay: index * 0.05 }}
-    viewport={{ once: true }}
+    viewport={{ once: false }}
     className="flex flex-col items-center gap-2 group"
   >
     <motion.div
@@ -135,7 +135,7 @@ const FeaturedSkill = ({ name, icon, progress, index }: FeaturedSkillProps) => (
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    viewport={{ once: true, amount: 0.5 }}
+    viewport={{ once: false, amount: 0.5 }}
     className="bg-secondary/60 border border-border/50 rounded-xl p-4 hover:border-primary/50 transition-all duration-300"
   >
     <div className="flex items-center gap-3 mb-3">
@@ -150,7 +150,7 @@ const FeaturedSkill = ({ name, icon, progress, index }: FeaturedSkillProps) => (
         initial={{ width: 0 }}
         whileInView={{ width: `${progress}%` }}
         transition={{ duration: 1, delay: 0.3 + index * 0.1, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.8 }}
+        viewport={{ once: false, amount: 0.8 }}
         className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
       />
     </div>
@@ -167,7 +167,7 @@ const SectionHeader = ({ title, highlight }: SectionHeaderProps) => (
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.5 }}
-    viewport={{ once: true }}
+    viewport={{ once: false }}
     className="flex items-center gap-2 mb-6"
   >
     <span className="text-primary font-display font-bold">{highlight}</span>
@@ -187,7 +187,12 @@ const Skills = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 items-start mb-16">
           {/* Left: Header */}
-          <motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: false }}
+          >
             <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">MY SKILLS</span>
             <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
               Know-How &

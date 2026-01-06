@@ -49,7 +49,7 @@ const GitHubHeatmap = () => {
     }
 
     const monthLabels: { name: string; weekIndex: number }[] = [];
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let lastMonth = -1;
 
     data.forEach((week, weekIndex) => {
@@ -71,11 +71,11 @@ const GitHubHeatmap = () => {
   };
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
+    return date.toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     });
   };
 
@@ -116,7 +116,9 @@ const GitHubHeatmap = () => {
           {/* Links Section - Left */}
           <div className="bg-secondary/50 border border-border rounded-2xl p-6">
             <h3 className="font-display font-bold text-4xl text-foreground mb-8 leading-tight">
-              LIN<br />KS.
+              LIN
+              <br />
+              KS.
             </h3>
             <div className="grid grid-cols-2 gap-3">
               {socialLinks.map((link, index) => (
@@ -139,7 +141,7 @@ const GitHubHeatmap = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, margin: "-50px" }}
             className="bg-secondary/50 border border-border rounded-2xl p-6 overflow-hidden"
           >
             {/* Header */}
@@ -147,9 +149,7 @@ const GitHubHeatmap = () => {
               <div className="flex items-center gap-3">
                 <Github className="w-8 h-8 text-primary" />
                 <div>
-                  <h3 className="font-display font-semibold text-xl text-foreground">
-                    GITHUB CONTRIBUTIONS
-                  </h3>
+                  <h3 className="font-display font-semibold text-xl text-foreground">GITHUB CONTRIBUTIONS</h3>
                   <p className="text-sm text-primary">LAST 12 MONTHS</p>
                 </div>
               </div>

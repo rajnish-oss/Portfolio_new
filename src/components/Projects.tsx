@@ -60,9 +60,9 @@ const Projects = () => {
         scrollTrigger: {
           trigger: gridRef.current,
           start: "top 85%",
-          once: true,
+          once: false,
         },
-      }
+      },
     );
   }, []);
 
@@ -70,13 +70,13 @@ const Projects = () => {
     <section id="projects" className="py-24 bg-secondary/30 relative overflow-hidden">
       {/* Scroll-based grid background */}
       <ScrollGrid gridSize={100} />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="flex flex-col md:flex-row md:items-end md:justify-between mb-16"
         >
           <div>
@@ -110,10 +110,7 @@ const Projects = () => {
                   />
                 </GradualBlur>
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileHover={{ y: 0, opacity: 1 }}
-                  >
+                  <motion.div initial={{ y: 20, opacity: 0 }} whileHover={{ y: 0, opacity: 1 }}>
                     <ArrowUpRight className="w-8 h-8 text-primary" />
                   </motion.div>
                 </div>
@@ -121,9 +118,7 @@ const Projects = () => {
               <h3 className="font-display font-semibold text-xl text-foreground mb-1 group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
-              <p className="text-muted-foreground text-sm">
-                {project.category}
-              </p>
+              <p className="text-muted-foreground text-sm">{project.category}</p>
             </motion.div>
           ))}
         </div>

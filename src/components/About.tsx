@@ -55,7 +55,7 @@ const About = () => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }, []);
 
@@ -65,7 +65,7 @@ const About = () => {
       <div className="absolute inset-0 z-0">
         <PixelWave pixelSize={18} speed={0.8} />
       </div>
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
@@ -73,9 +73,9 @@ const About = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
-            <div 
+            <div
               ref={containerRef}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
@@ -98,16 +98,14 @@ const About = () => {
             </div>
 
             <p className="text-muted-foreground text-lg mb-8 font-light leading-relaxed">
-              I'm Anish, a full-stack developer with a passion 
-              for building exceptional digital experiences. With over 2 years of 
-              experience, I specialize in React, Node.js, and modern web technologies.
+              I'm Anish, a full-stack developer with a passion for building exceptional digital experiences. With over 2
+              years of experience, I specialize in React, Node.js, and modern web technologies.
             </p>
             <p className="text-muted-foreground text-lg mb-10 font-light leading-relaxed">
-              When I'm not coding, you'll find me exploring new coffee shops, 
-              contributing to open source, or learning something new. I believe 
-              great software is built with empathy and attention to detail.
+              When I'm not coding, you'll find me exploring new coffee shops, contributing to open source, or learning
+              something new. I believe great software is built with empathy and attention to detail.
             </p>
-            
+
             <Button variant="hero" size="lg" className="gap-2 group">
               More About Me
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -119,9 +117,9 @@ const About = () => {
             {aboutCards.map((card, index) => (
               <motion.div
                 key={index}
-                whileHover={{ 
-                  y: -8, 
-                  transition: { duration: 0.3 } 
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3 },
                 }}
                 className="bg-card border border-border p-6 rounded-xl relative overflow-hidden group hover:border-primary/30 transition-colors duration-300"
               >
@@ -131,15 +129,11 @@ const About = () => {
                 </div>
 
                 <div className="relative z-10">
-                  <span className="text-primary font-display font-bold text-sm mb-2 block">
-                    {card.number}
-                  </span>
+                  <span className="text-primary font-display font-bold text-sm mb-2 block">{card.number}</span>
                   <h3 className="font-display font-semibold text-lg text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     {card.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm font-light">
-                    {card.description}
-                  </p>
+                  <p className="text-muted-foreground text-sm font-light">{card.description}</p>
                 </div>
               </motion.div>
             ))}
