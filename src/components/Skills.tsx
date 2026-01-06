@@ -92,11 +92,11 @@ interface FeaturedSkillProps {
 }
 
 const FeaturedSkill = ({ name, icon, progress, index }: FeaturedSkillProps) => (
-  <motion.div
+<motion.div
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    viewport={{ once: true }}
+    viewport={{ once: true, amount: 0.5 }}
     className="bg-secondary/60 border border-border/50 rounded-xl p-4 hover:border-primary/50 transition-all duration-300"
   >
     <div className="flex items-center gap-3 mb-3">
@@ -111,7 +111,7 @@ const FeaturedSkill = ({ name, icon, progress, index }: FeaturedSkillProps) => (
         initial={{ width: 0 }}
         whileInView={{ width: `${progress}%` }}
         transition={{ duration: 1, delay: 0.3 + index * 0.1, ease: "easeOut" }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.8 }}
         className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
       />
     </div>
