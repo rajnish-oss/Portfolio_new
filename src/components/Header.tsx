@@ -38,7 +38,7 @@ const Header = () => {
               <span className="text-primary-foreground font-display font-bold text-lg">A</span>
             </div>
             <span className="font-display font-bold text-xl text-foreground tracking-wider">
-              ANISH.DEV
+              Rajnish.DEV
             </span>
           </a>
 

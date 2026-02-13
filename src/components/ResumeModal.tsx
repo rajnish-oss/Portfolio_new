@@ -22,7 +22,7 @@ const ResumeModal = ({ trigger }: ResumeModalProps) => {
     const resumeUrl = "/resume.pdf";
     const link = document.createElement("a");
     link.href = resumeUrl;
-    link.download = "Anish_Resume.pdf";
+    link.download = "Rajnish_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -44,10 +44,10 @@ const ResumeModal = ({ trigger }: ResumeModalProps) => {
           <div className="bg-secondary/50 border border-border rounded-lg p-8 min-h-[400px] flex flex-col items-center justify-center text-center">
             <FileText className="w-16 h-16 text-primary/50 mb-4" />
             <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-              Anish Chowdhury
+              Rajnish Chowdhury
             </h3>
             <p className="text-muted-foreground text-sm mb-1">
-              Full-Stack Developer & Designer
+              Full-Stack Developer & AI Integrator 
             </p>
             <p className="text-muted-foreground text-sm mb-6">
               2+ Years of Experience

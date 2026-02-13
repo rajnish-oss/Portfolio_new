@@ -70,8 +70,8 @@ const handler = async (req: Request): Promise<Response> => {
     const emailSubject = subject ? `Portfolio Contact: ${subject}` : `Portfolio Contact from ${name}`;
 
     const emailResponse = await resend.emails.send({
-      from: "Portfolio Contact <contact@anishportfolio.online>",
-      to: ["anishchowdhury9935@gmail.com"],
+      from: "Portfolio Contact <contact@Rajnishportfolio.online>",
+      to: ["Rajnishchowdhury9935@gmail.com"],
       reply_to: email,
       subject: emailSubject,
       html: `
@@ -95,7 +95,7 @@ const handler = async (req: Request): Promise<Response> => {
                             <tr>
                               <td>
                                 <h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.5px;">
-                                  <span style="color: #ADFF00;">ANISH</span><span style="color: #ffffff;">.DEV</span>
+                                  <span style="color: #ADFF00;">Rajnish</span><span style="color: #ffffff;">.DEV</span>
                                 </h1>
                               </td>
                               <td align="right">
@@ -175,11 +175,11 @@ const handler = async (req: Request): Promise<Response> => {
                               <td>
                                 <p style="margin: 0; color: #666666; font-size: 12px;">Sent from your portfolio contact form</p>
                                 <p style="margin: 4px 0 0 0;">
-                                  <a href="https://anishportfolio.online" style="color: #ADFF00; font-size: 12px; text-decoration: none;">anishportfolio.online</a>
+                                  <a href="https://Rajnishportfolio.online" style="color: #ADFF00; font-size: 12px; text-decoration: none;">Rajnishportfolio.online</a>
                                 </p>
                               </td>
                               <td align="right">
-                                <p style="margin: 0; color: #444444; font-size: 11px;">© ${new Date().getFullYear()} Anish Chowdhury</p>
+                                <p style="margin: 0; color: #444444; font-size: 11px;">© ${new Date().getFullYear()} Rajnish Chowdhury</p>
                               </td>
                             </tr>
                           </table>

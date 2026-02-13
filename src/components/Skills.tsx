@@ -14,24 +14,23 @@ const featuredSkills = [
     progress: 80,
   },
   {
-    name: "Tailwind CSS",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-    progress: 100,
+    name: "Fast Api",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+    progress: 70,
   },
   {
-    name: "JavaScript",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    name: "Django",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg",
     progress: 80,
   },
 ];
 
 // Core programming languages
 const coreStacks = [
-  { name: "C", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" },
+  
   { name: "C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
-  { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
   { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "Typescript", icon: "https://devicon-website.vercel.app/api/typescript/original.svg" },
 ];
 
 // Web development technologies
@@ -43,24 +42,25 @@ const webDevStacks = [
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
     invert: true,
   },
-  { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" },
-  {
-    name: "Three.js",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg",
-    invert: true,
-  },
   { name: "GSAP", icon: "https://cdn.simpleicons.org/greensock/88CE02" },
-  { name: "Astro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" },
   { name: "ShadCN UI", icon: "https://ui.shadcn.com/apple-touch-icon.png" },
   { name: "Bootstrap", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
-  { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+  {
+    name: "Fast Api",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+  },
+  {
+    name: "Django",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg",
+  },
   {
     name: "Vercel",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
     invert: true,
   },
   { name: "Netlify", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" },
-  { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+  { name: "Next.js", icon: "https://devicon-website.vercel.app/api/nextjs/original.svg" },
+  { name: "Nest.js", icon: "https://devicon-website.vercel.app/api/nestjs/plain.svg" },
 ];
 
 // Platforms and services
@@ -188,7 +188,7 @@ const Skills = () => {
 
         {/* Core Stacks */}
         <div className="mb-12">
-          <SectionHeader highlight="Core" title="Stacks" />
+          <SectionHeader highlight="Core" title="Languages" />
           <div className="flex flex-wrap gap-6">
             {coreStacks.map((skill, index) => (
               <SkillIcon key={skill.name} {...skill} index={index} />

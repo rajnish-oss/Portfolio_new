@@ -5,23 +5,15 @@ import { useRef } from "react";
 
 const experiences = [
   {
-    year: "2023",
-    endYear: "Present",
-    role: "Full-Stack Developer",
-    company: "TechCorp Inc.",
+    year: "AUG  2025",
+    endYear: "SEPT 2025",
+    role: "Frontend Intern",
+    company: "Uzence pvt ltd",
     description:
-      "Leading development of scalable web applications using React and Node.js. Mentoring junior developers and implementing best practices.",
-    skills: ["React", "Node.js", "AWS", "TypeScript"],
+      "Built highly scalable and responsive UI component in react.js and in house design system.",
+    skills: ["React", "TypeScript", "Jest.js"],
   },
-  {
-    year: "2022",
-    endYear: "2023",
-    role: "Frontend Developer",
-    company: "StartupXYZ",
-    description:
-      "Built and maintained multiple client-facing applications. Improved site performance by 40% through optimization techniques.",
-    skills: ["Vue.js", "React", "PostgreSQL", "Docker"],
-  },
+
 ];
 
 const ExperienceCard = ({

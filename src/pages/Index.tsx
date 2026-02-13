@@ -21,22 +21,22 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Anish - Full-Stack Developer & Designer</title>
+        <title>Rajnish - Full-Stack Developer & AI Integrator </title>
         <meta 
           name="description" 
-          content="I'm Anish, a full-stack developer crafting beautiful, performant web experiences. From concept to deployment, I bring ideas to life with clean code." 
+          content="I'm Rajnish, a full-stack developer crafting beautiful, performant web experiences. From concept to deployment, I bring ideas to life with clean code." 
         />
-        <meta property="og:title" content="Anish - Full-Stack Developer & Designer" />
+        <meta property="og:title" content="Rajnish - Full-Stack Developer & AI Integrator " />
         <meta 
           property="og:description" 
-          content="I'm Anish, a full-stack developer crafting beautiful, performant web experiences. From concept to deployment, I bring ideas to life with clean code." 
+          content="I'm Rajnish, a full-stack developer crafting beautiful, performant web experiences. From concept to deployment, I bring ideas to life with clean code." 
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Anish - Full-Stack Developer & Designer" />
+        <meta name="twitter:title" content="Rajnish - Full-Stack Developer & AI Integrator " />
         <meta 
           name="twitter:description" 
-          content="I'm Anish, a full-stack developer crafting beautiful, performant web experiences. From concept to deployment, I bring ideas to life with clean code." 
+          content="I'm Rajnish, a full-stack developer crafting beautiful, performant web experiences. From concept to deployment, I bring ideas to life with clean code." 
         />
       </Helmet>
 

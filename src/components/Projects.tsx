@@ -11,34 +11,32 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: "TaskFlow",
-    category: "SaaS Dashboard",
-    image: "https://framerusercontent.com/images/gc9XBt4kBOdzUdF76TenAusXLc.png",
+    title: "Career Coach",
+    code:"https://github.com/rajnish-oss/XioCoach",
+    image: "careerAi.png",
   },
   {
-    title: "DevPortal",
-    category: "Developer Portfolio",
-    image: "https://framerusercontent.com/images/mIVeYkZ7AY3I6nBeeIJBdrYmhXo.png",
+    title: "MindMaster",
+    live:"https://mindmaster-swart.vercel.app/",
+    code:"https://github.com/rajnish-oss/mindMaster",
+    image: "mindMaster.png",
   },
   {
-    title: "AIChat",
-    category: "AI Application",
-    image: "https://framerusercontent.com/images/Hqrsr0qCchpMQ3qD5lr23ZblGk.jpg",
+    title: "Xio Articles",
+    live:"https://rajnish3xio.pythonanywhere.com/",
+    code:"https://github.com/rajnish-oss/Blogging-System-Django",
+    image: "xio.png",
   },
   {
-    title: "EcoTrack",
-    category: "Mobile App",
-    image: "https://framerusercontent.com/images/Wz3hFd8Q00IPgx6kaYPHaCCHOmo.png",
+    title: "FreeLive",
+    live:"https://free-live.vercel.app/",
+    code:"https://github.com/rajnish-oss/FREELive",
+    image: "freeLive.png",
   },
   {
-    title: "ShopEase",
-    category: "E-commerce Platform",
-    image: "https://framerusercontent.com/images/uxNbVYg6JF1nOlix86r82F8kT0.png",
-  },
-  {
-    title: "DataViz",
-    category: "Analytics Dashboard",
-    image: "https://framerusercontent.com/images/sRySW0tJNTyLWsQwz1S9xY41mEk.png",
+    title: "ChatApp",
+    code:"https://github.com/rajnish-oss/Chat-app",
+    image: "chatApp.png",
   },
 ];
 
@@ -115,10 +113,15 @@ const Projects = () => {
                   </motion.div>
                 </div>
               </div>
-              <h3 className="font-display font-semibold text-xl text-foreground mb-1 group-hover:text-primary transition-colors">
+              <h3 className="font-display font-semibold text-xl text-foreground mb-1 group-hover:text-secondry transition-colors">
                 {project.title}
               </h3>
-              <p className="text-muted-foreground text-sm">{project.category}</p>
+              <div className="flex gap-2">
+             
+              {project.live && <a className="text-muted-foreground text-lg hover:text-primary " href={project.live}>Live</a>}
+              {project.code && <a className="text-muted-foreground text-lg hover:text-primary " href={project.code}>Code</a>}
+
+              </div>
             </motion.div>
           ))}
         </div>

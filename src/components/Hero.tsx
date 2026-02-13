@@ -5,7 +5,12 @@ import { useRef } from "react";
 import VariableProximity from "@/components/reactbits/VariableProximity";
 import Galaxy from "@/components/reactbits/Galaxy";
 import ResumeModal from "@/components/ResumeModal";
+import { ErrorBoundary } from "react-error-boundary";
 
+function ErrorFallback({error}) {
+  console.error("errr:" ,error.message)
+  return <div className="text-red-500">Galaxy failed to load: {error.message}</div>
+}
 const Hero = () => {
   const heroContainerRef = useRef<HTMLDivElement>(null);
 
@@ -13,6 +18,7 @@ const Hero = () => {
     <section className="min-h-screen pt-20 flex items-center relative overflow-hidden bg-background">
       {/* Galaxy Background */}
       <div className="absolute inset-0">
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Galaxy 
           density={1.5}
           hueShift={350}
@@ -26,6 +32,7 @@ const Hero = () => {
           autoCenterRepulsion={0}
           speed={1}
         />
+        </ErrorBoundary>
       </div>
 
       {/* Grid Lines Background */}
@@ -47,7 +54,7 @@ const Hero = () => {
             className="inline-flex items-center gap-2 bg-secondary/80 backdrop-blur-sm px-4 py-2 rounded-full mb-8 border border-border/50"
           >
             <Star className="w-4 h-4 text-primary fill-primary" />
-            <span className="text-muted-foreground text-sm">Full-Stack Developer & Designer</span>
+            <span className="text-muted-foreground text-sm">Full-Stack Developer & AI Integrator </span>
           </motion.div>
 
           {/* Main Heading with VariableProximity */}
@@ -59,7 +66,7 @@ const Hero = () => {
           >
             <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-foreground leading-tight">
               HI, I'M{" "}
-              <span className="text-primary">ANISH</span>
+              <span className="text-primary">Rajnish</span>
               <br />
               <VariableProximity
                 label="I BUILD THINGS"

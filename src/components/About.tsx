@@ -98,7 +98,7 @@ const About = () => {
             </div>
 
             <p className="text-muted-foreground text-lg mb-8 font-light leading-relaxed">
-              I'm Anish, a full-stack developer with a passion for building exceptional digital experiences. With over 2
+              I'm Rajnish, a full-stack developer with a passion for building exceptional digital experiences. With over 2
               years of experience, I specialize in React, Node.js, and modern web technologies.
             </p>
             <p className="text-muted-foreground text-lg mb-10 font-light leading-relaxed">

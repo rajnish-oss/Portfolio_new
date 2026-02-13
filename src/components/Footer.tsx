@@ -16,9 +16,8 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { label: "GitHub", href: "https://github.com/anishchowdhury9935", icon: Github },
-    { label: "Twitter", href: "https://x.com/Back_track_og", icon: Twitter },
-    { label: "Discord", href: "https://discordapp.com/users/1011559805850234981", icon: MessageCircle },
+    { label: "GitHub", href: "https://github.com/rajnish-oss", icon: Github },
+    { label: "Twitter", href: "https://x.com/rajnish_xio", icon: Twitter },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -71,7 +70,7 @@ const Footer = () => {
               <h4 className="font-display font-semibold text-sm tracking-wider mb-5 text-muted-foreground">CONTACT</h4>
               <div className="space-y-3 mb-6">
                 <motion.a
-                  href="mailto:hello@anish.dev"
+                  href="mailto:rajnishpandey844@gmail.com"
                   className="flex items-start gap-4 group"
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
@@ -81,7 +80,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="font-light text-foreground/80 group-hover:text-foreground transition-colors">
-                      hello@anish.dev
+                      hello@Rajnish.dev
                     </p>
                     <p className="font-light text-muted-foreground text-sm">Drop me a line</p>
                   </div>
@@ -159,11 +158,11 @@ const Footer = () => {
               <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
                 <span className="text-primary-foreground font-display font-bold text-xl">A</span>
               </div>
-              <span className="font-display font-bold text-2xl tracking-wider">ANISH.DEV</span>
+              <span className="font-display font-bold text-2xl tracking-wider">Rajnish.DEV</span>
             </motion.div>
 
             <p className="text-sm font-light text-muted-foreground text-center">
-              © {currentYear} Anish. Crafted with precision and passion.
+              © {currentYear} Rajnish. Crafted with precision and passion.
             </p>
 
             <div className="flex items-center gap-4 text-xs text-muted-foreground">

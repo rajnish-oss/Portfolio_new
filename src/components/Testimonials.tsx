@@ -11,21 +11,21 @@ gsap.registerPlugin(ScrollTrigger);
 const testimonials = [
   {
     quote:
-      "Anish delivered our project ahead of schedule with exceptional quality. His attention to detail and communication made the collaboration seamless. Highly recommend!",
+      "Rajnish delivered our project ahead of schedule with exceptional quality. His attention to detail and communication made the collaboration seamless. Highly recommend!",
     name: "Sarah Mitchell",
     role: "CEO",
     company: "TechStart Inc.",
   },
   {
     quote:
-      "Working with Anish was a game-changer for our product. His technical expertise and design sensibility helped us create something truly special.",
+      "Working with Rajnish was a game-changer for our product. His technical expertise and design sensibility helped us create something truly special.",
     name: "James Anderson",
     role: "Product Manager",
     company: "GrowthLab",
   },
   {
     quote:
-      "Anish transformed our outdated platform into a modern, user-friendly application. His problem-solving skills and dedication were impressive throughout.",
+      "Rajnish transformed our outdated platform into a modern, user-friendly application. His problem-solving skills and dedication were impressive throughout.",
     name: "Emily Chen",
     role: "Founder",
     company: "Innovatech",
