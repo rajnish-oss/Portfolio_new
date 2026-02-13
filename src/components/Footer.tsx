@@ -80,7 +80,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="font-light text-foreground/80 group-hover:text-foreground transition-colors">
-                      hello@Rajnish.dev
+                      rajnishpandey844@gmail.com
                     </p>
                     <p className="font-light text-muted-foreground text-sm">Drop me a line</p>
                   </div>
